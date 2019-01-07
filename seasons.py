@@ -28,6 +28,24 @@ class room():
     def __init__(self, stage):
         self.stage = stage
 
+    def question(self):
+        pass
+
+class spring(room):
+    def __init__(self, stage = 'spring'):
+        super().__init__(stage)
+        print('STAGE 1: SPRING')
+
+class summer(room):
+    def __init__(self, stage = 'summer'):
+        super().__init__(stage)
+        print('STAGE 2: SUMMER')
+
+class fall(room):
+    def __init__(self, stage = 'fall'):
+        super().__init__(stage)
+        print('STAGE 3: FALL')
+
 class winter(room):
     def __init__(self, stage = 'winter'):
         super().__init__(stage)
