@@ -1,8 +1,17 @@
-print("Hello! You are stuck in the house of a Pinterest mom, where each room is seasonally themed.\n Unfortunately, some of her decorations might be too realistic. Your goal is to make it out of all four rooms alive. You have 5 health points, 3 backpack slots, and 1 hand item.")
+print("Hello! You are stuck in the house of a Pinterest mom, where each room is seasonally themed.\n Unfortunately, some of her decorations might be too realistic. Your goal is to make it out of all four rooms alive.")
+print("You have 5 health points, 3 backpack slots, and 1 hand item.")
+print("drop, take, and use")
 
 #selena's section ---
 def parseText(text):
-    pass
+    if text.contains("drop "):
+        pass
+    else if text.contains("take "):
+        pass
+    else if text.contains("use "):
+        pass
+    else:
+        print("Sorry, we didn't get that. Please try again. The only text commands are 'drop', 'take', and 'use'.")
 
 #helena's section ---
 class player():
@@ -54,6 +63,24 @@ class winter(room):
         print('STAGE 4: WINTER')
 
 class game():
+
+    self.questionBank = [
+        [
+            ['What do you do?',
+             '1. Explore the River',
+             '',
+             '',
+             '']
+            
+            ]
+        [
+            ]
+        [
+            ]
+        [
+            ]
+        ]
+    
     def __init__(self):
         me = player()
         stage4 = winter()
