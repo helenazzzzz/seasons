@@ -19,6 +19,7 @@ class room():
         print('{}. Check Backpack'.format(choices+2))
         print('{}. Skip Turn'.format(choices+3))
         selection = input()
+        game.parseText(game,selection)
     def play(self,level):
         self.question(scenes[level][0],questionBank[level][0])
 
@@ -52,9 +53,11 @@ class game():
     lives = 5
     items = 0
     hand = ''
+    location = ''
     def __init__(self):
         stage1 = spring()
-        self.backpack = ['item','','']
+        self.backpack = ['','','']
+        self.location = 'default_0'
     def getFromBackpack(self, item):
         pass
     
