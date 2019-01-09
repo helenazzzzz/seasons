@@ -13,15 +13,15 @@ class room():
         print(scene)
         print(qSet[0])
         for i in range(1,choices):
-            print('{}. {}'.format(i,qSet[i]))
-        print('{}. Use item'.format(choices))
-        print('{}. Drop item'.format(choices+1))
-        print('{}. Take item'.format(choices+2))
-        print('{}. Check stats'.format(choices+3))
+            print(qSet[i])
+        print('U. Use Item')
+        print('D. Drop Item')
+        print('C. Check Stats')
         selection = input()
         game.parseText(game,selection)
     def play(self,level):
-        self.question(scenes[level][0],questionBank[level][0])
+        while not self.passed:
+            self.question(scenes[level][0],questionBank[level][0])
 
 class spring(room):
     def startLevel(self):
@@ -95,9 +95,9 @@ class game():
 questionBank = [
     [
         ['Choose your selection',
-         'Explore the river',
-         'Explore the forest',
-         'Explore the garden'],
+         'R. Explore the River',
+         'F. Explore the Forest',
+         'G. Explore the Garden'],
         ],
     [
         ],
