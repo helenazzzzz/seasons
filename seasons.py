@@ -3,11 +3,12 @@ print("You have 5 health points, 3 backpack slots, and 1 hand item.")
 print("drop, take, and use")
 
 class player():
+    backpack = ['','','']
+    lives = 5
+    items = 0
+    hand = ''
     def __init__(self):
-        self.backpack = ['','','']
-        self.lives = 5
-        self.items = 0
-        self.hand = ''
+        pass
     def getFromBackpack(self, item):
         pass
     
@@ -22,22 +23,24 @@ class player():
 
     def useItem(self, item):
         pass
-    self.backpack[0] = '?'
     def parseText(text):
         text = text.lower()
         if text == "check stats":
             pass
-        elif text.contains("drop "):
+        elif "drop " in text:
             item = text[5:]
             remove(item)
-        elif text.contains("take "):
+        elif "take " in text:
             item = text[5:]
-            if backpack.contains(item):
+            if item in backpack:
                 pass
-        elif text.contains("use "):
+        elif "use " in text:
             item = text[4:]
         else:
             print("Sorry, we didn't get that. Please try again. The only text commands are 'drop', 'take', and 'use'.")
+    backpack[0] = '?'
+    parseText('take ?')
+
 
 class room():
 
