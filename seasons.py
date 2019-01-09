@@ -2,18 +2,6 @@ print("Hello! You are stuck in the house of a Pinterest mom, where each room is 
 print("You have 5 health points, 3 backpack slots, and 1 hand item.")
 print("drop, take, and use")
 
-#selena's section ---
-def parseText(text):
-    if text.contains("drop "):
-        pass
-    else if text.contains("take "):
-        pass
-    else if text.contains("use "):
-        pass
-    else:
-        print("Sorry, we didn't get that. Please try again. The only text commands are 'drop', 'take', and 'use'.")
-
-#helena's section ---
 class player():
     def __init__(self):
         self.backpack = ['','','']
@@ -34,6 +22,20 @@ class player():
 
     def useItem(self, item):
         pass
+    def parseText(text):
+        if text == "check stats":
+            pass
+        elif text.contains("drop "):
+            item = text[5:]
+            remove(item)
+        elif text.contains("take "):
+            item = text[5:]
+        elif text.contains("use "):
+            item = text[4:]
+        else:
+            print("Sorry, we didn't get that. Please try again. The only text commands are 'drop', 'take', and 'use'.")
+
+
 
 class room():
 
