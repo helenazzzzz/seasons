@@ -89,13 +89,13 @@ class game():
             ['Choose your selection',
              'Explore the River',
              'Explore the Forest',
-             'Explore the Garden']
+             'Explore the Garden'],
             
-            ]
+            ],
         [
-            ]
+            ],
         [
-            ]
+            ],
         [
             ]
         ]
@@ -108,7 +108,7 @@ class game():
     
     def __init__(self):
         me = player()
-        stage4 = winter()
+        stage1 = spring()
 
 #winter -
 
