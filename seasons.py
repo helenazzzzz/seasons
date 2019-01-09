@@ -22,7 +22,9 @@ class player():
 
     def useItem(self, item):
         pass
+    self.backpack[0] = '?'
     def parseText(text):
+        text = text.lower()
         if text == "check stats":
             pass
         elif text.contains("drop "):
@@ -30,12 +32,12 @@ class player():
             remove(item)
         elif text.contains("take "):
             item = text[5:]
+            if backpack.contains(item):
+                pass
         elif text.contains("use "):
             item = text[4:]
         else:
             print("Sorry, we didn't get that. Please try again. The only text commands are 'drop', 'take', and 'use'.")
-
-
 
 class room():
 
