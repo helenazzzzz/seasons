@@ -14,10 +14,10 @@ class room():
         print(qSet[0])
         for i in range(1,choices):
             print('{}. {}'.format(i,qSet[i]))
-        print('{}. Use Item'.format(choices))
-        print('{}. Drop Item'.format(choices+1))
-        print('{}. Check Backpack'.format(choices+2))
-        print('{}. Skip Turn'.format(choices+3))
+        print('{}. Use item'.format(choices))
+        print('{}. Drop item'.format(choices+1))
+        print('{}. Take item'.format(choices+2))
+        print('{}. Check stats'.format(choices+3))
         selection = input()
         game.parseText(game,selection)
     def play(self,level):
@@ -57,7 +57,7 @@ class game():
     def __init__(self):
         stage1 = spring()
         self.backpack = ['','','']
-        self.location = 'default_0'
+        self.location = 'spring_0'
     def getFromBackpack(self, item):
         pass
     
@@ -73,7 +73,9 @@ class game():
     def useItem(self, item):
         pass
     def parseText(self,text):
-        text = text.lower()
+        text = (text.lower()).strip()
+        if int(text) < len(questionBank[][]):
+            pass
         if text == "check stats":
             pass
         elif "drop " in text:
@@ -93,9 +95,9 @@ class game():
 questionBank = [
     [
         ['Choose your selection',
-         'Explore the River',
-         'Explore the Forest',
-         'Explore the Garden'],
+         'Explore the river',
+         'Explore the forest',
+         'Explore the garden'],
         ],
     [
         ],
