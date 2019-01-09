@@ -36,16 +36,32 @@ class player():
         pass
 
 class room():
+
+    self.passed = False
+    
     def __init__(self, stage):
         self.stage = stage
 
-    def question(self):
-        pass
+    def question(self,scene,qSet):
+        choices = len(qSet)
+        print(scene)
+        print(qSet[0])
+        for i in range(1,choices):
+            print('{}. {}'.format(i,qSet[i]))
+        print('{}. Use Item'.format(choices))
+        print('{}. Drop Item'.format(choices+1))
+        print('{}. Check Backpack'.format(choices+2))
+        print('{}. Skip Turn'.format(choices+3))
+        selection = input()
+    def play(self,level):
+        while not self.passed:
+            self.question(level,question_bank[level][0])
 
 class spring(room):
     def __init__(self, stage = 'spring'):
         super().__init__(stage)
         print('STAGE 1: SPRING')
+    play(0)
 
 class summer(room):
     def __init__(self, stage = 'summer'):
@@ -66,11 +82,10 @@ class game():
 
     self.questionBank = [
         [
-            ['What do you do?',
-             '1. Explore the River',
-             '',
-             '',
-             '']
+            ['Choose your selection',
+             'Explore the River',
+             'Explore the Forest',
+             'Explore the Garden']
             
             ]
         [
@@ -79,6 +94,12 @@ class game():
             ]
         [
             ]
+        ]
+    self.scenes = [
+            [
+               [
+                   ]
+               ]
         ]
     
     def __init__(self):
