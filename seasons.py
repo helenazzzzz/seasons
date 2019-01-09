@@ -1,8 +1,7 @@
-print("Hello! You are an alien from Neptune, and you want to learn more about Earthen seasons.\nYou have signed up for stuff.")
+print("Hello! You are stuck in the house of a Pinterest mom, where each room is seasonally themed.\n Unfortunately, some of her decorations might be too realistic. Your goal is to make it out of all four rooms alive.")
+print("You have 5 health points, 3 backpack slots, and 1 hand item.")
+print("drop, take, and use")
 
-#selena's section ---
-
-#helena's section ---
 class player():
     def __init__(self):
         self.backpack = ['','','']
@@ -23,17 +22,52 @@ class player():
 
     def useItem(self, item):
         pass
+    def parseText(text):
+        if text == "check stats":
+            pass
+        elif text.contains("drop "):
+            item = text[5:]
+            remove(item)
+        elif text.contains("take "):
+            item = text[5:]
+        elif text.contains("use "):
+            item = text[4:]
+        else:
+            print("Sorry, we didn't get that. Please try again. The only text commands are 'drop', 'take', and 'use'.")
+
+
 
 class room():
+
+    passed = False
+    
     def __init__(self, stage):
         self.stage = stage
-    def question(self):
-        pass
+
+    def question(self,scene,qSet):
+        choices = len(qSet)
+        print(scene)
+        print(qSet[0])
+        for i in range(1,choices):
+            print('{}. {}'.format(i,qSet[i]))
+        print('{}. Use Item'.format(choices))
+        print('{}. Drop Item'.format(choices+1))
+        print('{}. Check Backpack'.format(choices+2))
+        print('{}. Skip Turn'.format(choices+3))
+        selection = input()
+    def play(self,level):
+        while not self.passed:
+            self.question(scenes[level][0],questionBank[level][0])
 
 class spring(room):
+    def startLevel(self):
+        super().play(0)
+    
     def __init__(self, stage = 'spring'):
         super().__init__(stage)
         print('STAGE 1: SPRING')
+        self.startLevel()
+    
 
 class summer(room):
     def __init__(self, stage = 'summer'):
@@ -51,10 +85,29 @@ class winter(room):
         print('STAGE 4: WINTER')
 
 class game():
+    
     def __init__(self):
         me = player()
-        stage4 = winter()
-
+        stage1 = spring()
+questionBank = [
+    [
+        ['Choose your selection',
+         'Explore the River',
+         'Explore the Forest',
+         'Explore the Garden'],
+        ],
+    [
+        ],
+    [
+        ],
+    [
+        ]
+    ]
+scenes = [
+    [
+       '' 
+        ]
+    ]
 #winter -
 
 def main():
