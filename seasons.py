@@ -53,9 +53,11 @@ class game():
     lives = 5
     items = 0
     hand = ''
-    location = ''
+    location = 0
+    places = {r:1}
     def __init__(self):
-        stage1 = spring()
+        spring()
+        stage = 'spring'
         self.backpack = ['','','']
         self.location = 'spring_0'
     def getFromBackpack(self, item):
@@ -72,10 +74,9 @@ class game():
 
     def useItem(self, item):
         pass
-    def parseText(self,text):
+    def parseText(self, text):
         text = (text.lower()).strip()
-        if int(text) < len(questionBank[][]):
-            pass
+        if text == 'r':
         if text == "check stats":
             pass
         elif "drop " in text:
