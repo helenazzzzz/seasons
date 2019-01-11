@@ -60,19 +60,17 @@ class game():
         pass
     def parseText(self,text):
         text = text.lower()
-        if text == "check stats":
-            pass
-        elif "drop " in text:
-            item = text[5:]
-            remove(item)
-        elif "take " in text:
-            item = text[5:]
-            if item in self.backpack:
-                pass
-        elif "use " in text:
-            item = text[4:]
+        if text == "b":
+            print("lives: " + lives)
+            print("item in hand: " + hand)
+            print("backpack: " + backpack)
+        elif text in places[level] and text != location:
+            location = text
+            print("You have now changed locations. " + location)
+        elif text in places[level]:
+            print("You are already there. " + location)
         else:
-            print("Sorry, we didn't get that. Please try again. The only text commands are 'drop', 'take', and 'use'.")
+            print("Sorry, we didn't get that. Please try again. The only text commands are 'drop', 'take', and '
 
 
 def main():
