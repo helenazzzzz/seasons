@@ -3,11 +3,15 @@ print("You have 5 health points, 3 backpack slots, and 1 hand item.")
 print("drop, take, and use")
 
 class room():
-
+    
+    stage = ''
+    level = ''
     passed = False
-    def __init__(self, stage):
+    def __init__(self, stage, level):
         self.stage = stage
-
+        self.level = level
+        print('STAGE {}: {}'.format(self.level+1, self.stage))
+        self.play()
     def question(self,scene,qSet):
         choices = len(qSet)
         print(scene)
@@ -19,47 +23,24 @@ class room():
         print('C. Check Stats')
         selection = input()
         game.parseText(game,selection)
-    def play(self,level):
+    def play(self):
         while not self.passed:
-            self.question(scenes[level][0],questionBank[level][0])
-
-class spring(room):
-    def startLevel(self):
-        super().play(0)
-    
-    def __init__(self, stage = 'spring'):
-        super().__init__(stage)
-        print('STAGE 1: SPRING')
-        self.startLevel()
-    
-
-class summer(room):
-    def __init__(self, stage = 'summer'):
-        super().__init__(stage)
-        print('STAGE 2: SUMMER')
-
-class fall(room):
-    def __init__(self, stage = 'fall'):
-        super().__init__(stage)
-        print('STAGE 3: FALL')
-
-class winter(room):
-    def __init__(self, stage = 'winter'):
-        super().__init__(stage)
-        print('STAGE 4: WINTER')
+            self.question(scenes[self.level][0],questionBank[self.level][0])
 
 class game():
     backpack = ['','','']
     lives = 5
     items = 0
     hand = ''
-    location = 0
-    places = {r:1}
+    location = ''
     def __init__(self):
-        spring()
-        stage = 'spring'
         self.backpack = ['','','']
-        self.location = 'spring_0'
+        self.location = 'default_0'
+        stage1 = room('SPRING',0)
+        stage2 = room('SUMMER',1)
+        stage3 = room('FALL',2)
+        stage4 = room('WINTER',3)
+        
     def getFromBackpack(self, item):
         pass
     
@@ -74,9 +55,8 @@ class game():
 
     def useItem(self, item):
         pass
-    def parseText(self, text):
-        text = (text.lower()).strip()
-        if text == 'r':
+    def parseText(self,text):
+        text = text.lower()
         if text == "check stats":
             pass
         elif "drop " in text:
