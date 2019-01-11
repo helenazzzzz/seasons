@@ -96,5 +96,4 @@ scenes = [
 def main():
     newGame = game()
     print(newGame.backpack[0])
-    newGame.parseText('take ?')
 main()
