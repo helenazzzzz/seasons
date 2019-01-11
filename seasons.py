@@ -9,19 +9,39 @@ class spring():
         passed = False
         self.Q1()
     def Q1(self):
+        print('The first door leads you into the Spring Room. You are scared and lost, but at least the weather is nice and the birds are chirping.') 
         print('''Choose your selection:
               R. Explore the River
               F. Explore the Forest
               G. Explore the Garden
+              B. Backpack / Check Stats
               ''')
         selection = input()
         game.parseText(game,selection)
     def Q2(self):
-        pass
+        print('''Choose your selection:
+              F. Explore the Forest
+              G. Explore the Garden
+              B. Backpack / Check Stats
+              ''')
+        selection = input()
+        game.parseText(game,selection)
     def Q3(self):
-        pass
+        print('''Choose your selection:
+              R. Explore the River
+              G. Explore the Garden
+              B. Backpack / Check Stats
+              ''')
+        selection = input()
+        game.parseText(game,selection)
     def Q4(self):
-        pass
+        print('''Choose your selection:
+              R. Explore the River
+              F. Explore the Forest
+              B. Backpack / Check Stats
+              ''')
+        selection = input()
+        game.parseText(game,selection)
     def Q5(self):
         pass
     def Q6(self):
