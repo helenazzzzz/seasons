@@ -63,11 +63,11 @@ class game():
             print("lives: " + lives)
             print("item in hand: " + hand)
             print("backpack: " + backpack)
-        elif text in places[level] and text not == location:
+        elif text in places[level] and text != location:
             location = text
-            print("You have now changed locations.")
+            print("You have now changed locations. " + location)
         elif text in places[level]:
-            print("You are already there.")
+            print("You are already there. " + location)
         else:
             print("Sorry, we didn't get that. Please try again. The only text commands are 'drop', 'take', and 'use'.")
 
