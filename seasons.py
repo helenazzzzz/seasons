@@ -54,7 +54,11 @@ class game():
     items = 0
     hand = ''
     location = 0
-    places = {r:1}
+    level = 0
+    places = [{'r':1, 'f':2, 'g':3},
+              {'s':1, 'o':2, 'b':3},
+              {'p':1, 'l':2, 'x':3},
+              {'m':1, 'i':2, 'c':3},]
     def __init__(self):
         spring()
         stage = 'spring'
