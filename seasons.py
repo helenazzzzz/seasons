@@ -59,7 +59,6 @@ class game():
               {'m':1, 'i':2, 'c':3}]
     location = ''
     def __init__(self):
-        self.backpack = []
         self.location = 'default_0'
         stage1 = spring()
         
@@ -68,11 +67,15 @@ class game():
             self.backpack.remove(item)
             self.backpack.append(self.hand)
             self.hand = item
+        else:
+            print("Sorry, there is no such item in your backpack.")
     
     def getFromGround(self, item):
         if len(self.backpack) < 3:
             self.backpack.append(self.hand)
             self.hand = item
+        else:
+            print("Sorry, your backpack is full.")
 
     def remove(self, item):
         pass
@@ -97,8 +100,9 @@ class game():
 
 def main():
     newGame = game()
-    newGame.getFromBackpack('key')
+    newGame.getFromBackpack('backpack')
     print(newGame.hand)
+    print(newGame.backpack)
 
 main()
 
