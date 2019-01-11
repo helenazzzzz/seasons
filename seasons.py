@@ -28,16 +28,15 @@ class spring():
         pass
 
 class game():
-    backpack = ['','','']
+    backpack = []
     lives = 5
     items = 0
     hand = ''
-    location = 0
     level = 0
     places = [{'r':1, 'f':2, 'g':3},
               {'s':1, 'o':2, 'b':3},
               {'p':1, 'l':2, 'x':3},
-              {'m':1, 'i':2, 'c':3},]
+              {'m':1, 'i':2, 'c':3}]
     location = ''
     def __init__(self):
         self.backpack = ['','','']
@@ -58,24 +57,24 @@ class game():
 
     def useItem(self, item):
         pass
+    
     def parseText(self,text):
         text = text.lower()
         if text == "b":
             print("lives: " + lives)
             print("item in hand: " + hand)
             print("backpack: " + backpack)
-        elif text in places[level] and text != location:
-            location = text
-            print("You have now changed locations. " + location)
-        elif text in places[level]:
-            print("You are already there. " + location)
+        elif text in self.places[self.level] and text != self.location:
+            self.location = text
+            print("You have now changed locations. " + self.location)
+        elif text in self.places[self.level]:
+            print("You are already there. " + self.location)
         else:
-            print("Sorry, we didn't get that. Please try again. The only text commands are 'drop', 'take', and '
+            print("Sorry, we didn't get that. Please try again. The only text commands are 'drop', 'take', and '")
 
 
 def main():
     newGame = game()
     print(newGame.backpack[0])
-    newGame.parseText('take ?')
 main()
 
