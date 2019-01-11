@@ -70,10 +70,10 @@ class spring():
     
 
 class game():
-    backpack = []
+    backpack = ['backpack']
     lives = 5
     items = 0
-    hand = ''
+    hand = 'hand'
     level = 0
     places = [{'r':1, 'f':2, 'g':3},
               {'s':1, 'o':2, 'b':3},
@@ -81,18 +81,20 @@ class game():
               {'m':1, 'i':2, 'c':3}]
     location = ''
     def __init__(self):
-        self.backpack = ['','','']
+        self.backpack = []
         self.location = 'default_0'
         stage1 = spring()
         print (stage1.txt)
     def getFromBackpack(self, item):
-        pass
+        if item in self.backpack:
+            self.backpack.remove(item)
+            self.backpack.append(self.hand)
+            self.hand = item
     
     def getFromGround(self, item):
-        pass
-
-    def putInBackpack(self, item):
-        pass
+        if len(self.backpack) < 3:
+            self.backpack.append(self.hand)
+            self.hand = item
 
     def remove(self, item):
         pass
@@ -103,20 +105,22 @@ class game():
     def parseText(self,text):
         text = text.lower()
         if text == "b":
-            print("lives: " + lives)
-            print("item in hand: " + hand)
-            print("backpack: " + backpack)
+            print("lives: " + str(self.lives))
+            print("item in hand: " + self.hand)
+            print("backpack: " + str(self.backpack)[1:-1])
         elif text in self.places[self.level] and text != self.location:
             self.location = text
             print("You have now changed locations. " + self.location)
         elif text in self.places[self.level]:
             print("You are already there. " + self.location)
         else:
-            print("Sorry, we didn't get that. Please try again. The only text commands are 'drop', 'take', and '")
+            print("Sorry, we didn't get that. Please try again.")
 
 
 def main():
     newGame = game()
-    print(newGame.backpack[0])
+    newGame.getFromBackpack('key')
+    print(newGame.hand)
+
 main()
 
