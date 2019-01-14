@@ -4,11 +4,11 @@ print("You have 5 health points, 3 backpack slots, and 1 hand item.")
 print("drop, take, and use")
 
 class spring():
+
     
     location = ''
     passed = ''
     def __init__(self):
-        current_game = newGame
         self.passed = False
         self.location = 0
         print('The first door leads you into the Spring Room. You are scared and lost, but at least the weather is nice and the birds are chirping.') 
@@ -21,28 +21,30 @@ class spring():
               B. Backpack / Check Stats
               ''')
         selection = input()
-        choice = game.parseText(game,selection)
+        choice = game.parseText(newGame,selection)
         if choice == 'r':
             self.Q2()
         elif choice == 'f':
             self.Q3()
         elif choice == 'g':
-            self.Q4()
+            self.Q4(0)
         else:
             self.Q1()
     def Q2(self):
-    	print('\nYou are at the River') 
+        print('\nYou are at the River') 
         print('''Choose your selection:
               F. Explore the Forest
               G. Explore the Garden
+              A. Go in the River
+              W. Walk Around
               B. Backpack / Check Stats
               ''')
         selection = input()
-        choice = game.parseText(game,selection)
+        choice = game.parseText(newGame,selection)
         if choice == 'f':
             self.Q3()
         elif choice == 'g':
-            self.Q4()
+            self.Q4(0)
         elif choice == 'w':
             self.Q5()
         elif choice == 'a':
@@ -50,43 +52,71 @@ class spring():
         else:
             self.Q2()
     def Q3(self):
-    	print('\nYou are in the Forest')
-    	print('''Choose your selection:
+        print('\nYou are in the Forest')
+        print('''Choose your selection:
               R. Explore the River
               G. Explore the Garden
+              W. Walk Around
               B. Backpack / Check Stats
               ''')
         selection = input()
-        choice = game.parseText(game,selection)
+        choice = game.parseText(newGame,selection)
         if choice == 'r':
             self.Q2()
         elif choice == 'g':
-            self.Q4()
+            self.Q4(0)
         else:
             self.Q3()
-    def Q4(self):
+    def Q4(self,e):
         event = random.random()
         if event < 0.1:
-            self.Q6()
-        elif event < 0.2:
             print("Oof")
+            newGame.lives -= 1
+            e = 0
+        event += e
+        print(event)
+        if event > 3:
+            print("You have found the shed, there is a shovel and a fishing rod inside, they might be useful.")
         print('''Choose your selection:
               R. Explore the River
               F. Explore the Forest
+              W. Wander around
               B. Backpack / Check Stats
               ''')
         selection = input()
-        choice = game.parseText(game,selection)
+        choice = game.parseText(newGame,selection)
         if choice == 'r':
             self.Q2()
         elif choice == 'f':
             self.Q3()
         else:
-            self.Q4()
+            self.Q4(event)
     def Q5(self):
-        pass
+        print('''Choose your selection:
+              L. Leave the River
+              A. Attempt to fish
+              B. Backpack / Check Stats
+              ''')
     def Q6(self):
-        pass
+        print('''Choose your selection:
+              O. Open Chest
+              I. Ignore
+              B. Backpack / Check Stats
+              ''')
+        selection = input()
+        choice = game.parseText(newGame,selection)
+        if choice == 'o':
+            pass
+        else:
+            return
+        
+    def Q7(self):
+        print('''Choose your selection:
+              P. Pick Up
+              I. Ignore
+              B. Backpack / Check Stats
+              ''')
+    
 
 class game():
     backpack = ['backpack']
@@ -103,7 +133,7 @@ class game():
         self.location = 'default_0'
     def start(self):
         stage1 = spring()
-	def getFromBackpack(self, item):
+    def getFromBackpack(self, item):
         if item in self.backpack:
             self.backpack.remove(item)
             self.backpack.append(self.hand)
@@ -134,8 +164,6 @@ class game():
             self.location = text
             print("You have now changed locations. " + self.location)
             return self.location
-        else:
-            print("Sorry, we didn't get that. Please try again.")
 
 newGame = game()
 newGame.start()
