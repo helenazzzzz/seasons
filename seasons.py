@@ -4,11 +4,9 @@ print("drop, take, and use")
 
 class spring():
 
-    location = ''
     passed = ''
     def __init__(self):
-        self.passed = False
-        self.location = 0
+        passed = False
         self.Q1()
     def Q1(self):
         print('The first door leads you into the Spring Room. You are scared and lost, but at least the weather is nice and the birds are chirping.') 
@@ -21,22 +19,17 @@ class spring():
         selection = input()
         game.parseText(game,selection)
     def Q2(self):
-        print('You are at the River') 
         print('''Choose your selection:
               F. Explore the Forest
               G. Explore the Garden
-              A. Go in the River
-              W. Walk Around
               B. Backpack / Check Stats
               ''')
         selection = input()
         game.parseText(game,selection)
     def Q3(self):
-        print('You are in the Forest')
         print('''Choose your selection:
               R. Explore the River
               G. Explore the Garden
-              W. Walk Around
               B. Backpack / Check Stats
               ''')
         selection = input()
@@ -50,24 +43,9 @@ class spring():
         selection = input()
         game.parseText(game,selection)
     def Q5(self):
-        print('''Choose your selection:
-              L. Leave the River
-              A. Attempt to fish
-              B. Backpack / Check Stats
-              ''')
+        pass
     def Q6(self):
-        print('''Choose your selection:
-              O. Open Chest
-              I. Ignore
-              B. Backpack / Check Stats
-              ''')
-    def Q7(self):
-        print('''Choose your selection:
-              P. Pick Up
-              I. Ignore
-              B. Backpack / Check Stats
-              ''')
-    
+        pass
 
 class game():
     backpack = ['backpack']
@@ -83,7 +61,7 @@ class game():
     def __init__(self):
         self.location = 'default_0'
         stage1 = spring()
-        print (stage1.txt)
+        
     def getFromBackpack(self, item):
         if item in self.backpack:
             self.backpack.remove(item)
