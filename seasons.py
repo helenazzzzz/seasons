@@ -30,13 +30,15 @@ class spring():
             self.Q4()
         else:
             self.Q1()
+
+
     def Q2(self):
     	print('\nYou are at the River') 
         print('''Choose your selection:
                 F. Explore the Forest
-              G. Explore the Garden
-              B. Backpack / Check Stats
-              ''')
+                G. Explore the Garden
+                B. Backpack / Check Stats
+                ''')
         selection = input()
         choice = game.parseText(game,selection)
         if choice == 'f':
@@ -139,5 +141,7 @@ class game():
 
 newGame = game()
 newGame.start()
+
+
 
 
