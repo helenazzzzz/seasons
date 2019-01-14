@@ -33,7 +33,7 @@ class spring():
     def Q2(self):
         print('\nYou are at the River') 
         print('''Choose your selection:
-              F. Explore the Forest
+                F. Explore the Forest
               G. Explore the Garden
               A. Go in the River
               W. Walk Around
