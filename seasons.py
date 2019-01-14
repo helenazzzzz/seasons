@@ -3,6 +3,16 @@ print("Hello! You are stuck in the house of a Pinterest mom, where each room is 
 print("You have 5 health points, 3 backpack slots, and 1 hand item.")
 print("drop, take, and use")
 
+
+
+class item():
+
+    name = ''
+    use = 0
+    def __init__(self,name,use):
+        self.name = name
+        self.use = use
+
 class spring():
 
     foundShed = False
