@@ -4,7 +4,6 @@ print("You have 5 health points, 3 backpack slots, and 1 hand item.")
 print("drop, take, and use")
 
 class spring():
-
     
     location = ''
     passed = ''
@@ -32,12 +31,10 @@ class spring():
         else:
             self.Q1()
     def Q2(self):
-        print('\nYou are at the River') 
+    	print('\nYou are at the River') 
         print('''Choose your selection:
               F. Explore the Forest
               G. Explore the Garden
-              A. Go in the River
-              W. Walk Around
               B. Backpack / Check Stats
               ''')
         selection = input()
@@ -53,11 +50,10 @@ class spring():
         else:
             self.Q2()
     def Q3(self):
-        print('\nYou are in the Forest')
-        print('''Choose your selection:
+    	print('\nYou are in the Forest')
+    	print('''Choose your selection:
               R. Explore the River
               G. Explore the Garden
-              W. Walk Around
               B. Backpack / Check Stats
               ''')
         selection = input()
@@ -88,24 +84,9 @@ class spring():
         else:
             self.Q4()
     def Q5(self):
-        print('''Choose your selection:
-              L. Leave the River
-              A. Attempt to fish
-              B. Backpack / Check Stats
-              ''')
+        pass
     def Q6(self):
-        print('''Choose your selection:
-              O. Open Chest
-              I. Ignore
-              B. Backpack / Check Stats
-              ''')
-    def Q7(self):
-        print('''Choose your selection:
-              P. Pick Up
-              I. Ignore
-              B. Backpack / Check Stats
-              ''')
-    
+        pass
 
 class game():
     backpack = ['backpack']
@@ -122,7 +103,7 @@ class game():
         self.location = 'default_0'
     def start(self):
         stage1 = spring()
-    def getFromBackpack(self, item):
+	def getFromBackpack(self, item):
         if item in self.backpack:
             self.backpack.remove(item)
             self.backpack.append(self.hand)
