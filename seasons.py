@@ -3,7 +3,8 @@ print("Hello! You are stuck in the house of a Pinterest mom, where each room is 
 print("You have 5 health points, 3 backpack slots, and 1 hand item.")
 
 class spring():
-    
+
+    foundShed = False
     location = ''
     passed = ''
     def __init__(self):
@@ -65,12 +66,20 @@ class spring():
             self.Q4()
         else:
             self.Q3()
-    def Q4(self):
+    def Q4(self,e):
+        
         event = random.random()
         if event < 0.1:
-            self.Q6()
-        elif event < 0.2:
-            print("Oof")
+            newGame.lives -= 1
+            print("Oof, you've lost one life. Current life: {}".format(newGame.lives))
+            e = 0
+        event += e
+        if event > 2 and not self.foundShed:
+            newGame.getFromGround('shovel')
+            newGame.getFromGround('fishing rod')
+            event = 0
+            print("You have found the shed, there is a shovel and a fishing rod inside, they might be useful.")
+            self.Q7()
         print('''Choose your selection:
               R. Explore the River
               F. Explore the Forest
