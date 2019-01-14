@@ -4,15 +4,6 @@ print("You have 5 health points, 3 backpack slots, and 1 hand item.")
 print("drop, take, and use")
 
 
-
-class item():
-
-    name = ''
-    use = 0
-    def __init__(self,name,use):
-        self.name = name
-        self.use = use
-
 class spring():
 
     foundShed = False
@@ -91,12 +82,13 @@ class spring():
             print("Oof, you've lost one life. Current life: {}".format(newGame.lives))
             e = 0
         event += e
-        if event > 2 and not self.foundShed:
-            newGame.getFromGround('shovel')
-            newGame.getFromGround('fishing rod')
-            event = 0
+        if event > 1 and not self.foundShed:
             print("You have found the shed, there is a shovel and a fishing rod inside, they might be useful.")
-            self.Q7()
+            if self.Q7():
+                newGame.getFromGround('shovel')
+                newGame.getFromGround('fishing rod')
+                self.foundShed = True
+            event = 0
         print('''Choose your selection:
               R. Explore the River
               F. Explore the Forest
@@ -109,7 +101,7 @@ class spring():
             self.Q2()
         elif choice == 'f':
             self.Q3()
-        elif choice != 'b':
+        elif choice != 'b' and choice != 'w':
             print('Invalid choice')
         self.Q4(event)
             
@@ -127,7 +119,9 @@ class spring():
             event = random.random()
             if (newGame.hand == 'fishing rod' and event < 0.5) or event < 0.2:
                 print("You've found a fish!!!!")
-                self.Q7()
+                if self.Q7():
+                    getFromGround('fish')
+                    
         
     def Q6(self):
         print('''Choose your selection:
@@ -148,7 +142,13 @@ class spring():
               I. Ignore
               B. Backpack / Check Stats
               ''')
-    
+        selection = input()
+        choice = game.parseText(newGame,selection)
+        if choice == 'p':
+            return True
+        else:
+            return False
+            
 
 class game():
     backpack = []
@@ -175,7 +175,8 @@ class game():
     
     def getFromGround(self, item):
         if len(self.backpack) < 3:
-            self.backpack.append(self.hand)
+            if self.hand != '':
+                self.backpack.append(self.hand)
             self.hand = item
         else:
             print("Sorry, your backpack is full.")
@@ -191,12 +192,12 @@ class game():
         if text == "b":
             print("lives: " + str(self.lives))
             print("item in hand: " + self.hand)
-            print("backpack: " + str(self.backpack)[1:-1])
+            print('backpack:' + str(self.backpack)[1:-1])
         elif text in self.places[self.level] and text != self.location:
             self.location = text
             print("You have now changed locations. " + self.location)
             return self.location
-        
+        return text
 
 newGame = game()
 newGame.start()
