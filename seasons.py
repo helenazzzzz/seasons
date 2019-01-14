@@ -129,7 +129,11 @@ class game():
             print("Sorry, your backpack is full.")
 
     def remove(self, item):
-        if item in self.backpack:
+        if item == self.hand:
+            print('What do you want to replace the ' + item + ' in your hand?')
+            item = input().lower()
+            self.hand = item
+        elif item in self.backpack:
             self.backpack.remove(item)
 
     def useItem(self, item):
