@@ -1,3 +1,4 @@
+import random
 print("Hello! You are stuck in the house of a Pinterest mom, where each room is seasonally themed.\n Unfortunately, some of her decorations might be too realistic. Your goal is to make it out of all four rooms alive.")
 print("You have 5 health points, 3 backpack slots, and 1 hand item.")
 print("drop, take, and use")
@@ -18,7 +19,7 @@ class spring():
               B. Backpack / Check Stats
               ''')
         selection = input()
-        choice = game.parseText(game,selection)
+        choice = game.parseText(selection)
         if choice == 'r':
             self.Q2()
         elif choice == 'f':
@@ -35,7 +36,7 @@ class spring():
               B. Backpack / Check Stats
               ''')
         selection = input()
-        choice = game.parseText(game,selection)
+        choice = game.parseText(selection)
         if choice == 'f':
             self.Q3()
         elif choice == 'g':
@@ -54,7 +55,7 @@ class spring():
               B. Backpack / Check Stats
               ''')
         selection = input()
-        choice = game.parseText(game,selection)
+        choice = game.parseText(selection)
         if choice == 'r':
             self.Q2()
         elif choice == 'g':
@@ -62,13 +63,18 @@ class spring():
         else:
             self.Q3()
     def Q4(self):
+        event = random.random()
+        if event < 0.1:
+            self.Q6()
+        elif event < 0.2:
+            print("Oof")
         print('''Choose your selection:
               R. Explore the River
               F. Explore the Forest
               B. Backpack / Check Stats
               ''')
         selection = input()
-        choice = game.parseText(game,selection)
+        choice = game.parseText(selection)
         if choice == 'r':
             self.Q2()
         elif choice == 'f':
@@ -115,7 +121,7 @@ class game():
     def useItem(self, item):
         pass
     
-    def parseText(self,text):
+    def parseText(text):
         text = text.lower()
         if text == "b":
             print("lives: " + str(self.lives))
