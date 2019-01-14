@@ -1,134 +1,174 @@
+import random
 print("Hello! You are stuck in the house of a Pinterest mom, where each room is seasonally themed.\n Unfortunately, some of her decorations might be too realistic. Your goal is to make it out of all four rooms alive.")
 print("You have 5 health points, 3 backpack slots, and 1 hand item.")
 print("drop, take, and use")
 
-class room():
-    
-    stage = ''
-    level = ''
-    passed = False
-    def __init__(self, stage, level):
-        self.stage = stage
-        self.level = level
-        print('STAGE {}: {}'.format(self.level+1, self.stage))
-        self.play()
-    def question(self,scene,qSet):
-        choices = len(qSet)
-        print(scene)
-        print(qSet[0])
-        for i in range(1,choices):
-            print(qSet[i])
-        print('U. Use Item')
-        print('D. Drop Item')
-        print('C. Check Stats')
+class spring():
+
+    foundShed = False
+    location = ''
+    passed = ''
+    def __init__(self):
+        self.passed = False
+        self.location = 0
+        print('The first door leads you into the Spring Room. You are scared and lost, but at least the weather is nice and the birds are chirping.') 
+        self.Q1()
+    def Q1(self):
+        print('''\nChoose your selection:
+              R. Explore the River
+              F. Explore the Forest
+              G. Explore the Garden
+              B. Backpack / Check Stats
+              ''')
         selection = input()
-        game.parseText(game,selection)
-    def play(self,level):
-        while not self.passed:
-            self.question(scenes[level][0],questionBank[level][0])
-
-class spring(room):
-    def startLevel(self):
-        super().play(0)
+        choice = game.parseText(newGame,selection)
+        if choice == 'r':
+            self.Q2()
+        elif choice == 'f':
+            self.Q3()
+        elif choice == 'g':
+            self.Q4(0)
+        else:
+            self.Q1()
+    def Q2(self):
+        print('\nYou are at the River') 
+        print('''Choose your selection:
+              F. Explore the Forest
+              G. Explore the Garden
+              A. Go in the River
+              W. Walk Around
+              B. Backpack / Check Stats
+              ''')
+        selection = input()
+        choice = game.parseText(newGame,selection)
+        if choice == 'f':
+            self.Q3()
+        elif choice == 'g':
+            self.Q4(0)
+        elif choice == 'w':
+            self.Q5()
+        elif choice == 'a':
+            self.Q5()
+        else:
+            self.Q2()
+    def Q3(self):
+        print('\nYou are in the Forest')
+        print('''Choose your selection:
+              R. Explore the River
+              G. Explore the Garden
+              W. Walk Around
+              B. Backpack / Check Stats
+              ''')
+        selection = input()
+        choice = game.parseText(newGame,selection)
+        if choice == 'r':
+            self.Q2()
+        elif choice == 'g':
+            self.Q4(0)
+        else:
+            self.Q3()
+    def Q4(self,e):
+        
+        event = random.random()
+        if event < 0.1:
+            newGame.lives -= 1
+            print("Oof, you've lost one life. Current life: {}".format(newGame.lives))
+            e = 0
+        event += e
+        if event > 2 and not self.foundShed:
+            newGame.getFromGround('shovel')
+            newGame.getFromGround('fishing rod')
+            event = 0
+            print("You have found the shed, there is a shovel and a fishing rod inside, they might be useful.")
+        print('''Choose your selection:
+              R. Explore the River
+              F. Explore the Forest
+              W. Wander around
+              B. Backpack / Check Stats
+              ''')
+        selection = input()
+        choice = game.parseText(newGame,selection)
+        if choice == 'r':
+            self.Q2()
+        elif choice == 'f':
+            self.Q3()
+        else:
+            self.Q4(event)
+    def Q5(self):
+        print('''Choose your selection:
+              L. Leave the River
+              A. Attempt to fish
+              B. Backpack / Check Stats
+              ''')
+    def Q6(self):
+        print('''Choose your selection:
+              O. Open Chest
+              I. Ignore
+              B. Backpack / Check Stats
+              ''')
+        selection = input()
+        choice = game.parseText(newGame,selection)
+        if choice == 'o':
+            pass
+        else:
+            return
+        
+    def Q7(self):
+        print('''Choose your selection:
+              P. Pick Up
+              I. Ignore
+              B. Backpack / Check Stats
+              ''')
     
-    def __init__(self, stage = 'spring'):
-        super().__init__(stage)
-        print('STAGE 1: SPRING')
-        self.startLevel()
-    
-
-class summer(room):
-    def __init__(self, stage = 'summer'):
-        super().__init__(stage)
-        print('STAGE 2: SUMMER')
-
-class fall(room):
-    def __init__(self, stage = 'fall'):
-        super().__init__(stage)
-        print('STAGE 3: FALL')
-
-class winter(room):
-    def __init__(self, stage = 'winter'):
-        super().__init__(stage)
-        print('STAGE 4: WINTER')
-    def play(self):
-        while not self.passed:
-            self.question(scenes[self.level][0],questionBank[self.level][0])
 
 class game():
-    backpack = ['','','']
+    backpack = []
     lives = 5
     items = 0
     hand = ''
-    location = 0
     level = 0
     places = [{'r':1, 'f':2, 'g':3},
               {'s':1, 'o':2, 'b':3},
               {'p':1, 'l':2, 'x':3},
-              {'m':1, 'i':2, 'c':3},]
+              {'m':1, 'i':2, 'c':3}]
     location = ''
     def __init__(self):
-        self.backpack = ['','','']
         self.location = 'default_0'
-        stage1 = room('SPRING',0)
-        stage2 = room('SUMMER',1)
-        stage3 = room('FALL',2)
-        stage4 = room('WINTER',3)
-        
+    def start(self):
+        stage1 = spring()
     def getFromBackpack(self, item):
-        pass
+        if item in self.backpack:
+            self.backpack.remove(item)
+            self.backpack.append(self.hand)
+            self.hand = item
+        else:
+            print("Sorry, there is no such item in your backpack.")
     
     def getFromGround(self, item):
-        pass
-
-    def putInBackpack(self, item):
-        pass
+        if len(self.backpack) < 3:
+            self.backpack.append(self.hand)
+            self.hand = item
+        else:
+            print("Sorry, your backpack is full.")
 
     def remove(self, item):
         pass
 
     def useItem(self, item):
         pass
-    def parseText(self,text):
-        text = text.lower()
-        if text == "check stats":
-            pass
-        elif "drop " in text:
-            item = text[5:]
-            remove(item)
-        elif "take " in text:
-            item = text[5:]
-            if item in self.backpack:
-                pass
-        elif "use " in text:
-            item = text[4:]
-        else:
-            print("Sorry, we didn't get that. Please try again. The only text commands are 'drop', 'take', and 'use'.")
-
     
-        
-questionBank = [
-    [
-        ['Choose your selection',
-         'R. Explore the River',
-         'F. Explore the Forest',
-         'G. Explore the Garden'],
-        ],
-    [
-        ],
-    [
-        ],
-    [
-        ]
-    ]
-scenes = [
-    [
-       '' 
-        ]
-    ]
+    def parseText(self, text):
+        text = text.lower()
+        if text == "b":
+            print("lives: " + str(self.lives))
+            print("item in hand: " + self.hand)
+            print("backpack: " + str(self.backpack)[1:-1])
+        elif text in self.places[self.level] and text != self.location:
+            self.location = text
+            print("You have now changed locations. " + self.location)
+            return self.location
 
-def main():
-    newGame = game()
-    print(newGame.backpack[0])
-    newGame.parseText('take ?')
-main()
+newGame = game()
+newGame.start()
+
+
