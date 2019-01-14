@@ -4,9 +4,11 @@ print("You have 5 health points, 3 backpack slots, and 1 hand item.")
 print("drop, take, and use")
 
 class spring():
-
+    
+    location = ''
     passed = ''
     def __init__(self):
+        current_game = newGame
         self.passed = False
         self.location = 0
         print('The first door leads you into the Spring Room. You are scared and lost, but at least the weather is nice and the birds are chirping.') 
@@ -19,7 +21,7 @@ class spring():
               B. Backpack / Check Stats
               ''')
         selection = input()
-        choice = game.parseText(selection)
+        choice = game.parseText(game,selection)
         if choice == 'r':
             self.Q2()
         elif choice == 'f':
@@ -36,7 +38,7 @@ class spring():
               B. Backpack / Check Stats
               ''')
         selection = input()
-        choice = game.parseText(selection)
+        choice = game.parseText(game,selection)
         if choice == 'f':
             self.Q3()
         elif choice == 'g':
@@ -55,7 +57,7 @@ class spring():
               B. Backpack / Check Stats
               ''')
         selection = input()
-        choice = game.parseText(selection)
+        choice = game.parseText(game,selection)
         if choice == 'r':
             self.Q2()
         elif choice == 'g':
@@ -74,7 +76,7 @@ class spring():
               B. Backpack / Check Stats
               ''')
         selection = input()
-        choice = game.parseText(selection)
+        choice = game.parseText(game,selection)
         if choice == 'r':
             self.Q2()
         elif choice == 'f':
@@ -99,6 +101,7 @@ class game():
     location = ''
     def __init__(self):
         self.location = 'default_0'
+    def start(self):
         stage1 = spring()
 	def getFromBackpack(self, item):
         if item in self.backpack:
@@ -121,7 +124,7 @@ class game():
     def useItem(self, item):
         pass
     
-    def parseText(text):
+    def parseText(self, text):
         text = text.lower()
         if text == "b":
             print("lives: " + str(self.lives))
@@ -134,9 +137,7 @@ class game():
         else:
             print("Sorry, we didn't get that. Please try again.")
 
+newGame = game()
+newGame.start()
 
-def main():
-    newGame = game()
-
-main()
 
