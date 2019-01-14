@@ -4,6 +4,7 @@ print("You have 5 health points, 3 backpack slots, and 1 hand item.")
 print("drop, take, and use")
 
 class spring():
+
     foundShed = False
     location = ''
     passed = ''
@@ -67,6 +68,7 @@ class spring():
         else:
             self.Q3()
     def Q4(self,e):
+        
         event = random.random()
         if event < 0.1:
             newGame.lives -= 1
@@ -78,6 +80,7 @@ class spring():
             newGame.getFromGround('fishing rod')
             event = 0
             print("You have found the shed, there is a shovel and a fishing rod inside, they might be useful.")
+            self.Q7()
         print('''Choose your selection:
               R. Explore the River
               F. Explore the Forest
