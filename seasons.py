@@ -15,6 +15,7 @@ class spring():
         self.Q1()
         
     def Q1(self):
+        if self.passed: return
         print('''\nChoose your selection:
               R. Explore the River
               F. Explore the Forest
@@ -34,12 +35,12 @@ class spring():
         self.Q1()
             
     def Q2(self):
+        if self.passed: return
         print('\nYou are at the Riverbank') 
         print('''Choose your selection:
               F. Explore the Forest
               G. Explore the Garden
-              A. Go in the River
-              W. Walk Around
+              A. Go near the River
               B. Backpack / Check Stats
               ''')
         selection = input()
@@ -48,8 +49,6 @@ class spring():
             self.Q3()
         elif choice == 'g':
             self.Q4(0)
-        elif choice == 'w':
-            self.Q5()
         elif choice == 'a':
             self.Q5()
         elif choice != 'b':
@@ -57,6 +56,8 @@ class spring():
         self.Q2()
         
     def Q3(self):
+        if self.passed: return
+        digging = 0
         print('\nYou are in the Forest')
         print('''Choose your selection:
               R. Explore the River
@@ -64,17 +65,26 @@ class spring():
               W. Walk Around
               B. Backpack / Check Stats
               ''')
+        if newGame.hand == 'shovel':
+            print('D. Dig')
         selection = input()
         choice = game.parseText(newGame,selection)
+        if newGame.hand == 'shovel' and choice == 'd':
+            digging += random.random()
+            if digging > 0.7:
+                if newGame.foundChest():
+                    print('key found')
+                    self.passed = True
         if choice == 'r':
             self.Q2()
         elif choice == 'g':
             self.Q4(0)
-        elif choice != 'b':
+        elif choice != 'b' and choice != 'w':
             print('Invalid choice')
         self.Q3()
         
     def Q4(self,e):
+        if self.passed: return
         event = random.random()
         if event < 0.1:
             newGame.lives -= 1
@@ -83,7 +93,7 @@ class spring():
         event += e
         if event > 1 and not self.foundShed:
             print("You have found the shed, there is a shovel and a fishing rod inside, they might be useful.")
-            if self.Q7():
+            if newGame.foundItem():
                 newGame.getFromGround('shovel')
                 newGame.getFromGround('fishing rod')
                 self.foundShed = True
@@ -105,6 +115,7 @@ class spring():
         self.Q4(event)
             
     def Q5(self):
+        if self.passed: return
         print('''Choose your selection:
               L. Leave the River
               A. Attempt to fish
@@ -118,36 +129,9 @@ class spring():
             event = random.random()
             if (newGame.hand == 'fishing rod' and event < 0.5) or event < 0.2:
                 print("You've found a fish!!!!")
-                if self.Q7():
-                    getFromGround('fish')
-                    
-        
-    def Q6(self):
-        print('''Choose your selection:
-              O. Open Chest
-              I. Ignore
-              B. Backpack / Check Stats
-              ''')
-        selection = input()
-        choice = game.parseText(newGame,selection)
-        if choice == 'o':
-            pass
-        else:
-            return
-        
-    def Q7(self):
-        print('''Choose your selection:
-              P. Pick Up
-              I. Ignore
-              B. Backpack / Check Stats
-              ''')
-        selection = input()
-        choice = game.parseText(newGame,selection)
-        if choice == 'p':
-            return True
-        else:
-            return False
-            
+                if newGame.foundItem():
+                    newGame.getFromGround('fish')
+        self.Q5()
 
 class game():
     backpack = []
@@ -202,6 +186,32 @@ class game():
             print("You have now changed locations. " + self.location)
             return self.location
         return text
+
+    def foundItem(self):
+        print('''Choose your selection:
+              P. Pick Up
+              I. Ignore
+              B. Backpack / Check Stats
+              ''')
+        selection = input()
+        choice = game.parseText(newGame,selection)
+        if choice == 'p':
+            return True
+        else:
+            return False
+    
+    def foundChest(self):
+        print('''Choose your selection:
+              O. Open Chest
+              I. Ignore
+              B. Backpack / Check Stats
+              ''')
+        selection = input()
+        choice = game.parseText(newGame,selection)
+        if choice == 'o':
+            pass
+        else:
+            return
 
 newGame = game()
 newGame.start()
