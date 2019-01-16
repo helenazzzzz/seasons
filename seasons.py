@@ -1,5 +1,4 @@
 import random
-
 class spring():
     foundShed = False
     location = ''
@@ -19,7 +18,7 @@ class spring():
         print('\t\t F. Explore the Forest')
         print('\t\t G. Explore the Garden')
         print('\t\t B. Backpack / Check Stats\n')
-        selection = input()
+        selection = raw_input()
         choice = newGame.parseText(selection)
         if choice == 'r':
             self.Q2()
@@ -39,7 +38,7 @@ class spring():
         print('\t\t G. Explore the Garden')
         print('\t\t A. Attempt to fish')
         print('\t\t B. Backpack / Check Stats\n')
-        selection = input()
+        selection = raw_input()
         choice = newGame.parseText(selection)
         if choice == 'f':
             self.Q3()
@@ -66,7 +65,7 @@ class spring():
         if newGame.hand == 'shovel':
             print('\t\t D. Dig')
         print('\t\t B. Backpack / Check Stats\n')
-        selection = input()
+        selection = raw_input()
         choice = newGame.parseText(selection)
         if newGame.hand == 'shovel' and choice == 'd':
             digging += random.random()
@@ -104,7 +103,7 @@ class spring():
         print('\t\t F. Explore the Forest')
         print('\t\t W. Wander Around')
         print('\t\t B. Backpack / Check Stats\n')
-        selection = input()
+        selection = raw_input()
         choice = newGame.parseText(selection)
         if choice == 'r':
             self.Q2()
@@ -141,7 +140,7 @@ class summer():
               S. Explore the sand
               B. Backpack / Check stats
               ''')
-        selection = input()
+        selection = raw_input()
         choice = newGame.parseText(selection)
         if choice == 'l':
             self.lemonadeStand()
@@ -162,7 +161,7 @@ class summer():
               B. Backpack / Check stats
               D. Browse the item directory
               ''')
-        selection = input()
+        selection = raw_input()
         choice = newGame.parseText(selection)
         if choice == 'd':
             self.directory()
@@ -184,7 +183,7 @@ class summer():
               ''')
         if newGame.hand == 'net':
             print('\t\t N. Use net to look for a pearl')
-        selection = input()
+        selection = raw_input()
         choice = newGame.parseText(selection)
         if choice == 'd':
             digging += random.random()
@@ -204,7 +203,7 @@ class summer():
             print('Invalid choice')
             
 
-        selection = input()
+        selection = raw_input()
         choice = newGame.parseText(selection)
         if newGame.hand == 'shovel' and choice == 'd':
             digging += random.random()
@@ -230,7 +229,7 @@ class summer():
               B. Backpack / Check stats''')
         if newGame.hand == 'metal detector':
             print('              M. Use metal detector')
-        selection = input()
+        selection = raw_input()
         choice = newGame.parseText(selection)
         if newGame.hand == 'metal detector' and choice == 'm':
             detect += random.random()
@@ -256,7 +255,7 @@ class summer():
               O. Orangeade       100 shells
               K. Key limeade     100 shells
               C. Cancel''')
-        selection = input()
+        selection = raw_input()
         choice = newGame.parseText(selection)
         if shells >= 1 and choice == 'm':
             shells -= 1
@@ -291,7 +290,7 @@ class summer():
               W. Wander around
               B. Backpack / Check Stats
               ''')
-        selection = input()
+        selection = raw_input()
         choice = newGame.parseText(selection)
         if choice == 'r':
             self.Q2()
@@ -325,7 +324,7 @@ class fall():
         print('\t\t O. Explore the Orchard')
         print('\t\t L. Explore the Leaf Pile')
         print('\t\t B. Backpack / Check Stats\n')
-        selection = input()
+        selection = raw_input()
         choice = newGame.parseText(selection)
         if choice == 'p':
             self.Q2()
@@ -346,7 +345,7 @@ class fall():
         if newGame.hand == 'knife':
             print('\t\t C. Carve a pumpkin')
         print('\t\t B. Backpack / Check Stats\n')
-        selection = input()
+        selection = raw_input()
         choice = newGame.parseText(selection)
         if choice == 'o':
             self.Q3()
@@ -374,7 +373,7 @@ class fall():
         print('\t\t T. Talk to store owner')
         print('\t\t W. Walk around')
         print('\t\t B. Backpack / Check Stats\n')
-        selection = input()
+        selection = raw_input()
         choice = newGame.parseText(selection)
         if choice == 'p':
             self.Q2()
@@ -412,7 +411,7 @@ class fall():
         if self.foundChest:
             print('\t\t C. Open Chest')
         print('\t\t B. Backpack / Check Stats\n')
-        selection = input()
+        selection = raw_input()
         choice = newGame.parseText(selection)
         if choice == 'p':
             self.Q2()
@@ -458,7 +457,7 @@ class fall():
         print('Hello! What can I do for you today?')
         print('\t\t D. Discuss Deal')
         print('\t\t L. Leave Store')
-        selection = input()
+        selection = raw_input()
         choice = newGame.parseText(selection)
         if choice == 'd':
             if not self.foundRake:
@@ -471,7 +470,7 @@ class fall():
                 if leafCounter == 4:
                     print('\t\t T. Trade')
                     print('\t\t C. Cancel')
-                    selection = input()
+                    selection = raw_input()
                     choice = newGame.parseText(selection)
                     if choice == 't':
                         newGame.remove('red leaf')
@@ -529,12 +528,12 @@ class game():
             print("Sorry, your backpack is full.")
             print('\t\t R. Remove an Item')
             print('\t\t C. Cancel')
-            selection = input()
+            selection = raw_input()
             choice = self.parseText(selection)
             if selection == 'r':
                 print('backpack:' + str(self.backpack)[1:-1])
                 print('Select an item to remove')
-                selection = input()
+                selection = raw_input()
                 self.remove(selection)
                 if self.hand != '':
                     self.backpack.append(self.hand)
@@ -571,7 +570,7 @@ class game():
             print('\t\t P. Pick Up')
             print('\t\t I. Ignore')
             print('\t\t B. Backpack / Check Stats\n')
-            selection = input()
+            selection = raw_input()
             choice = self.parseText(selection)
         if choice == 'p':
             return True
@@ -586,7 +585,7 @@ class game():
             print('\t\t O. Open Chest')
             print('\t\t I. Ignore')
             print('\t\t B. Backpack / Check Stats\n')
-            selection = input()
+            selection = raw_input()
             choice = self.parseText(selection)
         if choice == 'o':   
             return True
@@ -603,7 +602,7 @@ class game():
         print('\t\t S. Switch Item')
         print('\t\t R. Remove')
         print('\t\t C. Cancel\n')
-        selection = input()
+        selection = raw_input()
         choice = self.parseText(selection)
         if choice =='u':
             self.useItem(self.hand)
@@ -614,13 +613,13 @@ class game():
         if choice == 's':
             print('backpack:' + str(self.backpack)[1:-1])
             print('Select an item to switch')
-            selection = input()
+            selection = raw_input()
             self.getFromBackpack(self.parseText(selection))
         elif choice == 'r':
             print('hand:' + self.hand)
             print('backpack:' + str(self.backpack)[1:-1])
             print('Select an item to remove')
-            selection = input()
+            selection = raw_input()
             self.remove(selection)
 
     def nextLevel(self):
