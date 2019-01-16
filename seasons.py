@@ -120,6 +120,194 @@ class spring():
     def next(self):
         self.passed = True
 
+
+#####################################################################################################
+class summer():
+    foundShed = False
+    location = ''
+    passed = ''
+    shells = 0
+    def __init__(self):
+        self.passed = False
+        self.location = 0
+        print('You find yourself on a beach, in front of a lemonade stand that appears to sell things beside lemonade.') 
+    
+    def start(self):
+        self.intro()
+        
+    def intro(self):
+        if self.passed: return
+        print('''\nChoose your selection:
+              L. Explore the lemonade stand
+              O. Explore the ocean
+              S. Explore the sand
+              B. Backpack / Check stats
+              ''')
+        selection = input()
+        choice = newGame.parseText(selection)
+        if choice == 'l':
+            self.lemonadeStand()
+        elif choice == 'o':
+            self.ocean()
+        elif choice == 's':
+            self.sand(0)
+        elif choice != 'b':
+            print('Invalid choice')
+        self.intro()
+            
+    def lemonadeStand(self):
+        if self.passed: return
+        print('\nWelcome to the lemonade stand! Here, the currency is shells, which you can find in the ocean.') 
+        print('''Choose your selection:
+              O. Explore the ocean
+              S. Explore the sand
+              B. Backpack / Check stats
+              D. Browse the item directory
+              ''')
+        selection = input()
+        choice = newGame.parseText(selection)
+        if choice == 'd':
+            self.directory()
+        elif choice == 'o':
+            self.ocean()
+        elif choice == 's':
+            self.sand()
+        elif choice != 'b':
+            print('Invalid choice')
+        self.lemonadeStand()
+
+    def ocean(self):
+        if self.passed: return
+        print('''Choose your selection:
+              L. Explore the lemonade stand
+              S. Explore the sand
+              B. Backpack / Check stats
+              D. Dig for shells by hand
+              ''')
+        if newGame.hand == 'net':
+            print('\t\t N. Use net to look for a pearl')
+        selection = input()
+        choice = newGame.parseText(selection)
+        if choice == 'd':
+            digging += random.random()
+            if digging > 0.7:
+                print('You found a shell!')
+                if (true):
+                    newGame.getFromGround('shell')
+            else:
+                print('Sorry, you didn\'t find anything.')
+        elif choice == 'l':
+            self.lemonadeStand()
+        elif choice == 's' and newGame.hand == 'shovel':
+            self.sand()
+        elif choice == 'n':
+            self.net()
+        elif choice != 'b':
+            print('Invalid choice')
+            
+
+        selection = input()
+        choice = newGame.parseText(selection)
+        if newGame.hand == 'shovel' and choice == 'd':
+            digging += random.random()
+            if digging > 0.7:
+                if newGame.foundChest():
+                    newGame.getFromGround('key')
+                    print('key found')
+        if choice == 'r':
+            self.Q2()
+        elif choice == 'g':
+            self.Q4(0)
+        elif choice != 'b' and choice != 'w' and choice != 'd':
+            print('Invalid choice')
+        self.ocean()
+
+    def sand(self):
+        if self.passed: return
+        digging = 0
+        print('\nItem directory')
+        print('''Choose your selection:
+              L. Explore the lemonade stand
+              O. Explore the ocean
+              B. Backpack / Check stats''')
+        if newGame.hand == 'metal detector':
+            print('              M. Use metal detector')
+        selection = input()
+        choice = newGame.parseText(selection)
+        if newGame.hand == 'metal detector' and choice == 'm':
+            detect += random.random()
+            if detect > 0.7:
+                if newGame.foundChest():
+                    pass
+                    ############
+        if choice == 'l':
+            self.lemonadeStand()
+        elif choice == 'o':
+            self.ocean()
+        elif choice != 'b':
+            print('Invalid choice')
+        self.sand()
+
+    def directory(self):
+        if self.passed: return
+        digging = 0
+        print('\nItem directory')
+        print('''What do you want to buy?
+              M. Metal detector  1 shell
+              L. Lemonade        100 shells
+              O. Orangeade       100 shells
+              K. Key limeade     100 shells
+              C. Cancel''')
+        selection = input()
+        choice = newGame.parseText(selection)
+        if shells >= 1 and choice == 'm':
+            shells -= 1
+            newGame.getFromGround('metal detector')
+        if choice == 'c':
+            self.lemonadeStand()
+        elif choice != 'b':
+            print('Invalid choice')
+        self.directory()
+    
+    def dig(self,e):
+        ######
+        if self.passed: return
+        event = random.random()
+        if event < 0.1:
+            newGame.lives -= 1
+            print("Oof, you got stung by a bee and lost one life. Current life: {}".format(newGame.lives))
+            e = 0
+        event += e
+        if event > 1 and not self.foundShed:
+            print("You have found the shed, there is a shovel and a fishing rod inside, they might be useful.")
+            print('You may use the item that is currently in your hand, check your stats to change the item')
+            if newGame.foundItem():
+                newGame.getFromGround('shovel')
+                newGame.getFromGround('fishing rod')
+                self.foundShed = True
+            event = 0
+        print('You are in the garden')
+        print('''Choose your selection:
+              R. Explore the River
+              F. Explore the Forest
+              W. Wander around
+              B. Backpack / Check Stats
+              ''')
+        selection = input()
+        choice = newGame.parseText(selection)
+        if choice == 'r':
+            self.Q2()
+        elif choice == 'f':
+            self.Q3()
+        elif choice != 'b' and choice != 'w':
+            print('Invalid choice')
+        self.Q4(event)
+
+    def next(self):
+        self.passed = True
+##########################################################################################################
+
+
 class fall():
     passed = ''
     foundRake = False
@@ -258,7 +446,7 @@ class game():
     hand = ''
     level = 0
     places = [{'r':1, 'f':2, 'g':3},
-              {'s':1, 'o':2, 'b':3},
+              {'l':1, 'o':2, 's':3},
               {'p':1, 'l':2, 'x':3},
               {'m':1, 'i':2, 'c':3}]
     location = ''
@@ -270,6 +458,8 @@ class game():
         #self.stage.start()
         self.stage = fall()
         self.stage.start()
+        #self.stage = summer()
+        #self.stage.start()
     def getFromBackpack(self, item):
         if item in self.backpack:
             self.backpack.remove(item)
