@@ -2,6 +2,7 @@ import random
 print("Hello! You are stuck in the house of a Pinterest mom, where each room is seasonally themed.\n Unfortunately, some of her decorations might be too realistic. Your goal is to make it out of all four rooms alive.")
 print("You have 5 health points, 3 backpack slots, and 1 hand item.")
 
+items = {'apple':1, 'fish':2, 'cake':2, 'shovel': 10, 'key':100}
 
 class spring():
 
@@ -79,7 +80,7 @@ class spring():
             self.Q2()
         elif choice == 'g':
             self.Q4(0)
-        elif choice != 'b' and choice != 'w':
+        elif choice != 'b' and choice != 'w' and choice != 'd':
             print('Invalid choice')
         self.Q3()
         
@@ -132,6 +133,7 @@ class spring():
                 if newGame.foundItem():
                     newGame.getFromGround('fish')
         self.Q5()
+   
 
 class game():
     backpack = []
@@ -176,11 +178,12 @@ class game():
         pass
     
     def parseText(self, text):
-        text = text.lower()
+        text = text.lower().strip()
         if text == "b":
             print("lives: " + str(self.lives))
             print("item in hand: " + self.hand)
             print('backpack:' + str(self.backpack)[1:-1])
+            self.backpackPrompt()
         elif text in self.places[self.level] and text != self.location:
             self.location = text
             print("You have now changed locations. " + self.location)
@@ -194,7 +197,7 @@ class game():
               B. Backpack / Check Stats
               ''')
         selection = input()
-        choice = game.parseText(newGame,selection)
+        choice = self.parseText(selection)
         if choice == 'p':
             return True
         else:
@@ -207,11 +210,30 @@ class game():
               B. Backpack / Check Stats
               ''')
         selection = input()
-        choice = game.parseText(newGame,selection)
-        if choice == 'o':
-            pass
+        choice = self.parseText(selection)
+        if choice == 'o':   
+            return True
         else:
-            return
+            return False
+    
+    def backpackPrompt(self):
+        print('''Choose your selection:
+        S. Switch Item
+        R. Remove
+        C. Cancel
+        ''')
+        selection = input()
+        choice = self.parseText(selection)
+        if choice == 's':
+            print('backpack:' + str(self.backpack)[1:-1])
+            print('Select an item to switch')
+            selection = input()
+            self.getFromBackpack(self.parseText(selection))
+        elif choice == 'r':
+            print('backpack:' + str(self.backpack)[1:-1])
+            print('Select an item to remove')
+            selection = input()
+            self.getFromBackpack(self.remove(selection))
 
 newGame = game()
 newGame.start()
