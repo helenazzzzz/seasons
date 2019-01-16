@@ -64,10 +64,12 @@ class spring():
         print('''Choose your selection:
               R. Explore the River
               G. Explore the Garden
-              W. Walk Around
-              B. Backpack / Check Stats''')
+              W. Walk Around''')
         if newGame.hand == 'shovel':
-            print('              D. Dig')
+            print('''
+              D. Dig''')
+        print('''
+              B. Backpack / Check Stats''')
         selection = input()
         choice = newGame.parseText(selection)
         if newGame.hand == 'shovel' and choice == 'd':
@@ -117,13 +119,12 @@ class spring():
             print('Invalid choice')
         self.Q4(event)
 
-    def next(self):
-        self.passed = True
-
 class fall():
     passed = ''
     foundRake = False
     foundKey = False
+    foundKnife = False
+    foundChest = False
     def __init__(self):
         self.passed = False
     
@@ -151,8 +152,34 @@ class fall():
         self.Q1()
 
     def Q2(self):
-        pass
-    
+        if self.passed: return
+        print('''\nChoose your selection:
+              O. Explore the Orchard
+              L. Explore the Leaf Pile
+              S. Smash a pumpkin''')
+        if newGame.hand == 'knife':
+            print('\t      C. Carve a pumpkin')
+        print('\t      B. Backpack / Check Stats\n')
+        selection = input()
+        choice = newGame.parseText(selection)
+        if choice == 'o':
+            self.Q3()
+        elif choice == 'l':
+            self.Q4()
+        elif choice == 's':
+            print('Oof, you dropped the pumpkin on your feet and man that hurts :\'(. Minus one life')
+            newGame.lives -= 1
+        elif choice == 'c' and self.foundKnife:
+            event = random.random()
+            if event < 0.5:
+                print('key found')
+                if newGame.foundItem():
+                    newGame.getFromGround('a key')
+                    self.foundKey = True
+        elif choice != 'b':
+            print('Invalid choice')
+        self.Q2()
+        
     def Q3(self):
         if self.passed: return
         print('''\nChoose your selection:
@@ -180,16 +207,33 @@ class fall():
                 print('You\'ve found an apple')
                 if newGame.foundItem():
                     newGame.getFromGround('apple')
-            elif event < 0.7:
+            elif event < 0.7 and not self.foundKnife:
                 print('You\'ve found an knife')
                 if newGame.foundItem():
                     newGame.getFromGround('knife')
+                    self.foundKnife = True
         elif choice != 'b':
             print('Invalid choice')
         self.Q3()
     
     def Q4(self):
-        if not self.foundRake:
+        if self.passed: return
+        print('''\nChoose your selection:
+              P. Explore the Pumpkin Patch
+              O. Explore the Orchard
+              L. Pick up a leaf''')
+        if newGame.hand == 'rake':
+            print('\t      R. Rake')
+        if self.foundChest:
+            print('\t      C. Open Chest')
+        print('\t      B. Backpack / Check Stats\n')
+        selection = input()
+        choice = newGame.parseText(selection)
+        if choice == 'p':
+            self.Q2()
+        elif choice == 'o':
+            self.Q3()
+        elif choice == 'l':
             event = random.random()
             if event < 0.25:
                 print('You\'ve found a red leaf')
@@ -207,14 +251,23 @@ class fall():
                 print('You\'ve found a green leaf')
                 if newGame.foundItem():
                     newGame.getFromGround('green leaf')
-        else:
+        elif choice == 'r' and newGame.hand == 'rake':
             print('You\'ve found a chest')
-            if not self.foundKey:
-                print('But you can\'t unlock it')
-            else:
-                if newGame.foundChest():
-                    newGame.getFromGround('key')
-                    print('key found')
+            self.foundChest = True
+        elif choice == 'c' and self.foundChest:
+            if newGame.foundChest():
+                if newGame.hand != 'a key':
+                    print('But you can\'t unlock it')
+                    if self.foundKey:
+                        print('Hint: Switch to the key item to unlock the chest')
+                else:
+                    if newGame.foundChest():
+                        newGame.getFromGround('key')
+                        print('key found')
+        elif choice != 'b':
+            print('Invalid choice')
+        self.Q4()
+            
 
     def Q5(self):
         print('''Hello! What can I do for you today?
@@ -243,8 +296,9 @@ class fall():
                         self.foundRake = True
             else:
                 print('Sorry, there are no deals today.')
-        if choice == 'l':
-            print('Thank you for visiting, have a great day!')
+        elif choice != 'l':
+            print('Invalid choice')
+        print('Thank you for visiting, have a great day!')
         self.Q3()
 
     def next(self):
@@ -252,7 +306,7 @@ class fall():
 
 class game():
     stage = ''
-    items = {'':0000,'apple':1, 'fish':2, 'cake':2, 'shovel': 10, 'fishing rod': 11, 'key':100}
+    items = {'':1000,'rotten apple':0, 'apple':1, 'fish':2, 'cake':2, 'shovel': 10, 'fishing rod': 11, 'rake': 12, 'red leaf': 13, 'orange leaf': 14, 'yellow leaf':15, 'green leaf': 16, 'knife':17, 'key':100, 'a key': 18}
     backpack = []
     lives = 5
     hand = ''
@@ -266,8 +320,8 @@ class game():
         print("Hello! You are stuck in the house of a Pinterest mom, where each room is seasonally themed.\n Unfortunately, some of her decorations might be too realistic. Your goal is to make it out of all four rooms alive.")
         print("You have 5 health points, 3 backpack slots, and 1 hand item.")
     def start(self):
-        #self.stage = spring()
-        #self.stage.start()
+        self.stage = spring()
+        self.stage.start()
         self.stage = fall()
         self.stage.start()
     def getFromBackpack(self, item):
@@ -299,7 +353,7 @@ class game():
             if self.lives > 5: 
                 self.lives = 5
         elif len(str(function)) == 3:
-            self.stage.next()
+            self.nextLevel()
 
     def parseText(self, text):
         text = text.lower().strip()
@@ -343,9 +397,9 @@ class game():
     
     def backpackPrompt(self):
         print('Choose your selection:')
-        if len(str(self.items[self.hand])) != 2:
-            print('          U. Use Item')
-        print('''           S. Switch Item
+        if len(str(self.items[self.hand])) % 2 == 1:
+            print('        U. Use Item')
+        print('''        S. Switch Item
         R. Remove
         C. Cancel
         ''')
@@ -363,6 +417,9 @@ class game():
             print('Select an item to remove')
             selection = input()
             self.getFromBackpack(self.remove(selection))
+
+    def nextLevel(self):
+        stage.passed = True
 
 newGame = game()
 newGame.start()
