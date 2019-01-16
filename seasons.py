@@ -314,8 +314,8 @@ class game():
         print("Hello! You are stuck in the house of a Pinterest mom, where each room is seasonally themed.\n Unfortunately, some of her decorations might be too realistic. Your goal is to make it out of all four rooms alive.")
         print("You have 5 health points, 3 backpack slots, and 1 hand item.")
     def start(self):
-        #self.stage = spring()
-        #self.stage.start()
+        self.stage = spring()
+        self.stage.start()
         self.stage = fall()
         self.stage.start()
     def getFromBackpack(self, item):
@@ -404,6 +404,8 @@ class game():
         print('Choose your selection:')
         if len(str(self.items[self.hand])) % 2 == 1:
             print('\t\t U. Use Item')
+        if len(self.backpack) == 0:
+            print('\t\t A. Add Item to backpack')
         print('\t\t S. Switch Item')
         print('\t\t R. Remove')
         print('\t\t C. Cancel\n')
@@ -412,6 +414,9 @@ class game():
         if choice =='u':
             self.useItem(self.hand)
             self.remove(self.hand)
+        if choice == 'a':
+            self.backpack.append(self.hand)
+            self.hand = ''
         if choice == 's':
             print('backpack:' + str(self.backpack)[1:-1])
             print('Select an item to switch')
