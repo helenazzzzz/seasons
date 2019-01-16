@@ -121,10 +121,36 @@ class spring():
         self.passed = True
 
 class fall():
-    
+    passed = ''
     def __init__(self):
-        pass
+        self.passed = False
     def Q1(self):
+        if self.passed: return
+        print('''\nChoose your selection:
+              P. Explore the Pumpkin Patch
+              O. Explore the Orchard
+              L. Explore the Leaf Pile
+              B. Backpack / Check Stats
+              ''')
+        selection = input()
+        choice = game.parseText(newGame,selection)
+        if choice == 'p':
+            self.Q2()
+        elif choice == 'o':
+            self.Q3()
+        elif choice == 'l':
+            self.Q4()
+        elif choice != 'b':
+            print('Invalid choice')
+        self.Q1()
+
+    def Q2(self):
+        pass
+    
+    def Q3(self):
+        pass
+    
+    def Q4(self):
         pass
 
 class game():
