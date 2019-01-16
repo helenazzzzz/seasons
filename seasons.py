@@ -21,7 +21,7 @@ class spring():
               B. Backpack / Check Stats
               ''')
         selection = input()
-        choice = game.parseText(newGame,selection)
+        choice = newGame.parseText(selection)
         if choice == 'r':
             self.Q2()
         elif choice == 'f':
@@ -42,7 +42,7 @@ class spring():
               B. Backpack / Check Stats
               ''')
         selection = input()
-        choice = game.parseText(newGame,selection)
+        choice = newGame.parseText(selection)
         if choice == 'f':
             self.Q3()
         elif choice == 'g':
@@ -69,7 +69,7 @@ class spring():
         if newGame.hand == 'shovel':
             print('              D. Dig')
         selection = input()
-        choice = game.parseText(newGame,selection)
+        choice = newGame.parseText(selection)
         if newGame.hand == 'shovel' and choice == 'd':
             digging += random.random()
             if digging > 0.7:
@@ -108,7 +108,7 @@ class spring():
               B. Backpack / Check Stats
               ''')
         selection = input()
-        choice = game.parseText(newGame,selection)
+        choice = newGame.parseText(selection)
         if choice == 'r':
             self.Q2()
         elif choice == 'f':
@@ -133,7 +133,7 @@ class fall():
               B. Backpack / Check Stats
               ''')
         selection = input()
-        choice = game.parseText(newGame,selection)
+        choice = newGame.parseText(selection)
         if choice == 'p':
             self.Q2()
         elif choice == 'o':
@@ -148,7 +148,47 @@ class fall():
         pass
     
     def Q3(self):
-        pass
+        if self.passed: return
+        print('''\nChoose your selection:
+              P. Explore the Pumpkin Patch
+              L. Explore the Leaf Pile
+              T. Talk to store owner
+              W. Walk around
+              B. Backpack / Check Stats
+              ''')
+        selection = input()
+        choice = newGame.parseText(selection)
+        if choice == 'p':
+            self.Q2()
+        elif choice == 'l':
+            self.Q4()
+        elif choice == 't':
+            print('''Hello! What can I do for you today?
+            D. Discuss Deal
+            L. Leave Store''')
+            selection = input()
+            choice = newGame.parseText(selection)
+            if choice == 'd':
+                pass
+            if choice == 'l':
+                pass
+        elif choice == 'w':
+            event = random.random()
+            if event < 0.2:
+                print('You\'ve found a rotten apple')
+                if newGame.foundItem():
+                    newGame.getFromGround('rotten apple')
+            elif event < 0.4:
+                print('You\'ve found an apple')
+                if newGame.foundItem():
+                    newGame.getFromGround('apple')
+            elif event < 0.7:
+                print('You\'ve found an knife')
+                if newGame.foundItem():
+                    newGame.getFromGround('knife')
+        elif choice != 'b':
+            print('Invalid choice')
+        self.Q1()
     
     def Q4(self):
         pass
