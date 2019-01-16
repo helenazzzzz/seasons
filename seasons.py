@@ -122,8 +122,14 @@ class spring():
 
 class fall():
     passed = ''
+    foundRake = False
+    foundKey = False
     def __init__(self):
         self.passed = False
+    
+    def start(self):
+        self.Q1()
+
     def Q1(self):
         if self.passed: return
         print('''\nChoose your selection:
@@ -163,15 +169,7 @@ class fall():
         elif choice == 'l':
             self.Q4()
         elif choice == 't':
-            print('''Hello! What can I do for you today?
-            D. Discuss Deal
-            L. Leave Store''')
-            selection = input()
-            choice = newGame.parseText(selection)
-            if choice == 'd':
-                pass
-            if choice == 'l':
-                pass
+            self.Q5()
         elif choice == 'w':
             event = random.random()
             if event < 0.2:
@@ -188,10 +186,69 @@ class fall():
                     newGame.getFromGround('knife')
         elif choice != 'b':
             print('Invalid choice')
-        self.Q1()
+        self.Q3()
     
     def Q4(self):
-        pass
+        if not self.foundRake:
+            event = random.random()
+            if event < 0.25:
+                print('You\'ve found a red leaf')
+                if newGame.foundItem():
+                    newGame.getFromGround('red leaf')
+            elif event < 0.5:
+                print('You\'ve found a orange leaf')
+                if newGame.foundItem():
+                    newGame.getFromGround('orange leaf')
+            elif event < 0.75:
+                print('You\'ve found a yellow leaf')
+                if newGame.foundItem():
+                    newGame.getFromGround('yellow leaf')
+            else:
+                print('You\'ve found a green leaf')
+                if newGame.foundItem():
+                    newGame.getFromGround('green leaf')
+        else:
+            print('You\'ve found a chest')
+            if not self.foundKey:
+                print('But you can\'t unlock it')
+            else:
+                if newGame.foundChest():
+                    newGame.getFromGround('key')
+                    print('key found')
+
+    def Q5(self):
+        print('''Hello! What can I do for you today?
+            D. Discuss Deal
+            L. Leave Store''')
+        selection = input()
+        choice = newGame.parseText(selection)
+        if choice == 'd':
+            if not self.foundRake:
+                print('I\'m currently selling a rake for one red leaf, one orange leaf, one yellow leaf, and one green leaf')
+                leafCounter = 0
+                if (newGame.hand == 'red leaf' or 'red leaf' in newGame.backpack): leafCounter += 1
+                if (newGame.hand == 'orange leaf' or 'orange leaf' in newGame.backpack): leafCounter += 1
+                if (newGame.hand == 'yellow leaf' or 'yellow leaf' in newGame.backpack): leafCounter += 1
+                if (newGame.hand == 'green leaf' or 'green leaf' in newGame.backpack): leafCounter += 1
+                if leafCounter == 4:
+                    print('             T. Trade')
+                    selection = input()
+                    choice = newGame.parseText(selection)
+                    if choice == 't':
+                        newGame.remove('red leaf')
+                        newGame.remove('orange leaf')
+                        newGame.remove('yellow leaf')
+                        newGame.remove('green leaf')
+                        newGame.getFromGround('rake')
+                        self.foundRake = True
+            else:
+                print('Sorry, there are no deals today.')
+        if choice == 'l':
+            print('Thank you for visiting, have a great day!')
+        self.Q3()
+
+    def next(self):
+        self.passed = True
 
 class game():
     stage = ''
@@ -206,12 +263,11 @@ class game():
               {'m':1, 'i':2, 'c':3}]
     location = ''
     def __init__(self):
-        self.location = 'default_0'
         print("Hello! You are stuck in the house of a Pinterest mom, where each room is seasonally themed.\n Unfortunately, some of her decorations might be too realistic. Your goal is to make it out of all four rooms alive.")
         print("You have 5 health points, 3 backpack slots, and 1 hand item.")
     def start(self):
-        self.stage = spring()
-        self.stage.start()
+        #self.stage = spring()
+        #self.stage.start()
         self.stage = fall()
         self.stage.start()
     def getFromBackpack(self, item):
@@ -232,9 +288,7 @@ class game():
 
     def remove(self, item):
         if item == self.hand:
-            print('What do you want to replace the ' + item + ' in your hand?')
-            item = input().lower()
-            self.hand = item
+            self.hand = ''
         elif item in self.backpack:
             self.backpack.remove(item)
 
