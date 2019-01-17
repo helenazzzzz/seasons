@@ -844,10 +844,6 @@ class winter():
         self.passed = True
 
 class game():
-<<<<<<< HEAD
-    stage = ''
-    items = {'':1000,'rotten apple':0, 'apple':1, 'fish':2, 'cake':2, 'shovel': 10, 'fishing rod': 11, 'rake': 12, 'red leaf': 13, 'orange leaf': 14, 'yellow leaf':15, 'green leaf': 16, 'knife':17, 'shell':18, 'pearl':19, 'pickax':20, 'key':100, 'a key': 18}
-=======
     stage = ''                      #instance variables of the game
     items = {'':1000,               #the length of each item's key indicates the item's use
     'rotten apple':0,               #1: food, the number is the amount of lives the player receives, may be used in the backpack
@@ -867,7 +863,6 @@ class game():
     'key':100, 
     'a key': 20,
     'metal detector': 21}
->>>>>>> bc2c85038ae8226d7fcd56e856d68f50c2701571
     backpack = []
     lives = 5
     hand = ''
@@ -891,6 +886,9 @@ class game():
         self.stage.start()
         print ("You've won the game!! Congratulations!")
     def getFromBackpack(self, item):
+        '''
+        exchanges an item in the backack with item in hand
+        '''
         if item in self.backpack:
             self.backpack.remove(item)
             self.backpack.append(self.hand)
@@ -899,11 +897,17 @@ class game():
             print("Sorry, there is no such item in your backpack.")
 
     def loseLife(self, lost):
+        '''
+        ends the game when the player has no lives left
+        '''
         self.lives -= lost
         if self.lives < 0:
             print('Sorry, you have no more lives left.')
     
     def getFromGround(self, item):
+        '''
+        retrieves an item from ground and replaces item in hand into the backpack
+        '''
         if len(self.backpack) < 3:
             if self.hand != '':
                 self.backpack.append(self.hand)
@@ -924,12 +928,18 @@ class game():
                 self.hand = item
 
     def remove(self, item):
+        '''
+        discard an item
+        '''
         if item == self.hand:
             self.hand = ''
         elif item in self.backpack:
             self.backpack.remove(item)
 
     def useItem(self, item):
+        '''
+        the item performs its trick and is disposed
+        '''
         function = self.items[item]
         if len(str(function)) == 1:
             self.lives += function
@@ -939,6 +949,9 @@ class game():
             self.nextLevel()
 
     def parseText(self, text):
+        '''
+        formats the text for the methods to read and opens backpack and stats
+        '''
         text = text.lower().strip()
         if text == "b":
             print("lives: " + str(self.lives))
@@ -948,6 +961,9 @@ class game():
         return text
 
     def foundItem(self):
+        '''
+        prompt the player to make a decision on an item
+        '''
         choice = 'b'
         while choice == 'b':
             print('Choose your selection:')
@@ -962,6 +978,9 @@ class game():
             return False
     
     def foundChest(self):
+        '''
+        prompt the player to make a decision on a chest
+        '''
         print('You\'ve found a chest')
         choice = 'b'
         while choice == 'b':
@@ -978,6 +997,9 @@ class game():
             return False
     
     def backpackPrompt(self):
+        '''
+        prompt the player to make a decision in the backpack
+        '''
         print('Choose your selection:')
         if len(str(self.items[self.hand])) % 2 == 1:
             print('\t\t U. Use Item')
