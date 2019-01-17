@@ -1,4 +1,5 @@
 import random
+import sys
 
 class spring():
     '''
@@ -720,6 +721,24 @@ class winter():
         
     def intro(self):
         if self.passed: return
+        print('+--=====------------------------------------------+')
+        print('|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXXX  0  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXXX 000 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXXX--0--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('+-------------------------------------------------+')
         print('Choose your selection:')
         print('\t\t C. Explore the cabin')
         print('\t\t W. Wander around outside')
@@ -760,6 +779,24 @@ class winter():
 
     def wander(self):
         if self.passed: return
+        print('+--=====------------------------------------------+')
+        print('|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXX+------+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXX+        +xXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXX++        ++XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXX+----------+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXX|    0     |X0XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXX|   000    |000XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXX+----0-----+X0XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('+-------------------------------------------------+')
         newGame.lives -= 1
         print("Without a source of heat, you feel your hands starting to go numb. That can't be good. You lose a life. Lives: " + str(newGame.lives))
         print("Choose your selection:") 
@@ -776,6 +813,24 @@ class winter():
 
     def lake(self):
         if self.passed: return
+        print('+--=====------------------------------------------+')
+        print('|                                                 |')
+        print('|                               X                 |')
+        print('|                              XXX     X          |')
+        print('|                              X X    XXX   XXX   |')
+        print('|                             X  XX  XX XXXX  XX  |')
+        print('|                           XX    XXXX   XX    X  |')
+        print('|     +------+             XX      XX     X    XX |')
+        print('|    +        +                     XX     XX     |')
+        print('|   ++        ++                                  |')
+        print('|   +----------+                                  |')
+        print('|   |          |                          XXXXXXXXX')
+        print('|   |          |                      XXXXXXXXXXXXX')
+        print('|   +----------+                 XXX0XXXXXXXXXXXXXX')
+        print('|                           XXXXXXX000XXXXXXXXXXXXX')
+        print('|                         XXXXXXXXXX0XXXXXXXXXXXXXX')
+        print('|                         XXXXXXXXXXXXXXXXXXXXXXXXX')
+        print('+--=====-------------------XXXXXXXXXXXXXXXXXXXXXXXX')
         print('You are at the frozen lake. Choose your selection:') 
         print('\t\t C. Explore the cabin')
         print('\t\t M. Explore the mountain')
@@ -817,6 +872,24 @@ class winter():
 
     def mountain(self):
         if self.passed: return
+        print('+--=====------------------------------------------+')
+        print('|                                                 |')
+        print('|                               X                 |')
+        print('|                              XXX     X          |')
+        print('|                              X X    XXX   XXX   |')
+        print('|                             X  XX  XX XXXX  XX  |')
+        print('|                           XX    XXXX   XX    X  |')
+        print('|     +------+             XX 0    XX     X    XX |')
+        print('|    +        +              000    XX     XX     |')
+        print('|   ++        ++              0                   |')
+        print('|   +----------+                                  |')
+        print('|   |          |                          XXXXXXXXX')
+        print('|   |          |                      XXXXXXXXXXXXX')
+        print('|   +----------+                 XXXXXXXXXXXXXXXXXX')
+        print('|                           XXXXXXXXXXXXXXXXXXXXXXX')
+        print('|                         XXXXXXXXXXXXXXXXXXXXXXXXX')
+        print('|                         XXXXXXXXXXXXXXXXXXXXXXXXX')
+        print('+--=====-------------------XXXXXXXXXXXXXXXXXXXXXXXX')
         print('You are in the mountain. Choose your selection:') 
         print('\t\t C. Explore the cabin')
         print('\t\t L. Explore the frozen lake')
@@ -903,6 +976,8 @@ class game():
         self.lives -= lost
         if self.lives < 0:
             print('Sorry, you have no more lives left.')
+            sys.exit()
+
     
     def getFromGround(self, item):
         '''
@@ -1029,6 +1104,9 @@ class game():
             self.remove(selection)
 
     def nextLevel(self):
+        '''
+        allows player to move onto next level
+        '''
         self.stage.passed = True
 
 newGame = game()
