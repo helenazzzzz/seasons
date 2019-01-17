@@ -14,6 +14,24 @@ class spring():
         
     def Q1(self):
         if self.passed: return
+        print('+-------------------------------------------------+')
+        print('|                                                 |')
+        print('|         0                              XX       |')
+        print('|        000             XXXXXX XXXXX   XXXXX     |')
+        print('|         0              XXXXXX XXXXX  XXXXXX     |')
+        print('|                        XXXXX  XXXXX     X       |')
+        print('|                           X     X      XX       |')
+        print('|                           X     X               |')
+        print('|                                                 |')
+        print('|                                              XXXX')
+        print('|                                        XXXXXXXXXX')
+        print('|       ++ ++ ++                     XXXXXXXXXXXXXX')
+        print('|        ++ ++ ++                XXXXXXXXX        |')
+        print('|       ++ ++ ++            XXXXXXXX              |')
+        print('|        ++ ++ ++        XXXXXXXXX                |')
+        print('|                      XXXXXX                     |')
+        print('|                   XXXXXXXX                      |')
+        print('+-----------------XXXXXXXXXX----------------------+')        
         print('Choose your selection:')
         print('\t\t R. Explore the River')
         print('\t\t F. Explore the Forest')
@@ -34,6 +52,24 @@ class spring():
     def Q2(self):
         if self.passed: return
         print('\nYou are at the Riverbank')
+        print('+-------------------------------------------------+')
+        print('|                                                 |')
+        print('|                                        XX       |')
+        print('|                        XXXXXX XXXXX   XXXXX     |')
+        print('|                        XXXXXX XXXXX  XXXXXX     |')
+        print('|                        XXXXX  XXXXX     X       |')
+        print('|                           X     X      XX       |')
+        print('|                           X     X               |')
+        print('|                                                 |')
+        print('|                                              XXXX')
+        print('|                              0         XXXXXXXXXX')
+        print('|       ++ ++ ++              000    XXXXXXXXXXXXXX')
+        print('|        ++ ++ ++              0 XXXXXXXXX        |')
+        print('|       ++ ++ ++            XXXXXXXX              |')
+        print('|        ++ ++ ++        XXXXXXXXX                |')
+        print('|                      XXXXXX                     |')
+        print('|                   XXXXXXXX                      |')
+        print('+-----------------XXXXXXXXXX----------------------+') 
         print('Choose your selection:')
         print('\t\t F. Explore the Forest')
         print('\t\t G. Explore the Garden')
@@ -57,8 +93,26 @@ class spring():
         
     def Q3(self):
         if self.passed: return
-        digging = 0
         print('\nYou are in the Forest')
+        print('+-------------------------------------------------+')
+        print('|                                                 |')
+        print('|                                        XX       |')
+        print('|                        XXXXXX XXXXX   XXXXX     |')
+        print('|                        XXXXXX XXXXX  XXXXXX     |')
+        print('|                        XXXXX  XXXXX 0   X       |')
+        print('|                           X     X  000 XX       |')
+        print('|                           X     X   0           |')
+        print('|                                                 |')
+        print('|                                              XXXX')
+        print('|                                        XXXXXXXXXX')
+        print('|       ++ ++ ++                     XXXXXXXXXXXXXX')
+        print('|        ++ ++ ++                XXXXXXXXX        |')
+        print('|       ++ ++ ++            XXXXXXXX              |')
+        print('|        ++ ++ ++        XXXXXXXXX                |')
+        print('|                      XXXXXX                     |')
+        print('|                   XXXXXXXX                      |')
+        print('+-----------------XXXXXXXXXX----------------------+') 
+        digging = 0
         print('Choose your selection:')
         print('\t\t R. Explore the River')
         print('\t\t G. Explore the Garden')
@@ -73,7 +127,7 @@ class spring():
             if digging > 0.7:
                 if newGame.foundChest():
                     newGame.getFromGround('key')
-                    print('key found')
+                    print('You\'ve found a key')
         if choice == 'r':
             self.Q2()
         elif choice == 'g':
@@ -84,6 +138,7 @@ class spring():
         
     def Q4(self,e):
         if self.passed: return
+        print('You are in the garden')
         event = random.random()
         if event < 0.1:
             newGame.lives -= 1
@@ -98,7 +153,24 @@ class spring():
                 newGame.getFromGround('fishing rod')
                 self.foundShed = True
             event = 0
-        print('You are in the garden')
+        print('+-------------------------------------------------+')
+        print('|                                                 |')
+        print('|                                        XX       |')
+        print('|                        XXXXXX XXXXX   XXXXX     |')
+        print('|                        XXXXXX XXXXX  XXXXXX     |')
+        print('|                        XXXXX  XXXXX     X       |')
+        print('|                           X     X      XX       |')
+        print('|                           X     X               |')
+        print('|                                                 |')
+        print('|         0                                    XXXX')
+        print('|        000                             XXXXXXXXXX')
+        print('|       ++0++ ++                     XXXXXXXXXXXXXX')
+        print('|        ++ ++ ++                XXXXXXXXX        |')
+        print('|       ++ ++ ++            XXXXXXXX              |')
+        print('|        ++ ++ ++        XXXXXXXXX                |')
+        print('|                      XXXXXX                     |')
+        print('|                   XXXXXXXX                      |')
+        print('+-----------------XXXXXXXXXX----------------------+') 
         print('Choose your selection:')
         print('\t\t R. Explore the River')
         print('\t\t F. Explore the Forest')
@@ -116,6 +188,7 @@ class spring():
 
 
     def next(self):
+        print('Congratulations! You have complete the Spring Room!')
         self.passed = True
 
 
@@ -285,10 +358,29 @@ class fall():
         self.passed = False
     
     def start(self):
+        print('Welcome to the fall room. The weather is getting a little chilly and the air is filled with the rich scents of pumpkin spice latte and apple pie.')
         self.Q1()
 
     def Q1(self):
         if self.passed: return
+        print('+-------------------------------------------------+')
+        print('|                                                 |')
+        print('|        0                                        |')
+        print('|       000              +-+ +-+ +-+ +-+ +-+ +-+ |')
+        print('|        0                | | | | | | | | | | | | |')
+        print('|                         +++ +++ +++ +++ +++ +++ |')
+        print('|                          |   |   |   |   |   |  |')
+        print('|                          +   +   +   +   +   +  |')
+        print('|                 X                               |')
+        print('|            X                                    |')
+        print('|      X  XXX   X                             ++  |')
+        print('|    X X XXXXXXXXX       ++         ++        ++  |')
+        print('|    X XXXXXXXXXXX      +--+  ++   +--+    ++     |')
+        print('|   X  XXXXXXXXXXX       ++  +--+   ++    +--+    |')
+        print('|         XXXXXXX X           ++       ++  ++     |')
+        print('|            XX                        ++         |')
+        print('|                                                 |')
+        print('+-------------------------------------------------+')
         print('Choose your selection:')
         print('\t\t P. Explore the Pumpkin Patch')
         print('\t\t O. Explore the Orchard')
@@ -308,6 +400,25 @@ class fall():
 
     def Q2(self):
         if self.passed: return
+        print('You are at the pumpkin patch.')
+        print('+-------------------------------------------------+')
+        print('|                                                 |')
+        print('|                                                 |')
+        print('|                         +-+ +-+ +-+ +-+ +-+ +-+ |')
+        print('|                         | | | | | | | | | | | | |')
+        print('|                         +++ +++ +++ +++ +++ +++ |')
+        print('|                          |   |   |   |   |   |  |')
+        print('|                          +   +   +   +   +   +  |')
+        print('|                 X                               |')
+        print('|            X                                    |')
+        print('|      X  XXX   X                        0    ++  |')
+        print('|    X X XXXXXXXXX       ++         ++  000   ++  |')
+        print('|    X XXXXXXXXXXX      +--+  ++   +--+  0 ++     |')
+        print('|   X  XXXXXXXXXXX       ++  +--+   ++    +--+    |')
+        print('|         XXXXXXX X           ++       ++  ++     |')
+        print('|            XX                        ++         |')
+        print('|                                                 |')
+        print('+-------------------------------------------------+')
         print('Choose your selection:')
         print('\t\t O. Explore the Orchard')
         print('\t\t L. Explore the Leaf Pile')
@@ -337,6 +448,25 @@ class fall():
         
     def Q3(self):
         if self.passed: return
+        print('You are at the orchard.')
+        print('+-------------------------------------------------+')
+        print('|                                                 |')
+        print('|                                                 |')
+        print('|                         +-+ +-+ +-+ +-+ +-+ +-+ |')
+        print('|                         | | | | | | | | | | | | |')
+        print('|                     0   +++ +++ +++ +++ +++ +++ |')
+        print('|                    000   |   |   |   |   |   |  |')
+        print('|                     0    +   +   +   +   +   +  |')
+        print('|                 X                               |')
+        print('|            X                                    |')
+        print('|      X  XXX   X                             ++  |')
+        print('|    X X XXXXXXXXX       ++         ++        ++  |')
+        print('|    X XXXXXXXXXXX      +--+  ++   +--+    ++     |')
+        print('|   X  XXXXXXXXXXX       ++  +--+   ++    +--+    |')
+        print('|         XXXXXXX X           ++       ++  ++     |')
+        print('|            XX                        ++         |')
+        print('|                                                 |')
+        print('+-------------------------------------------------+')
         print('Choose your selection:')
         print('\t\t P. Explore the Pumpkin Patch')
         print('\t\t L. Explore the Leaf Pile')
@@ -372,6 +502,25 @@ class fall():
     
     def Q4(self):
         if self.passed: return
+        print('You are at the leaf pile.')
+        print('+-------------------------------------------------+')
+        print('|                                                 |')
+        print('|                                                 |')
+        print('|                         +-+ +-+ +-+ +-+ +-+ +-+ |')
+        print('|                         | | | | | | | | | | | | |')
+        print('|                         +++ +++ +++ +++ +++ +++ |')
+        print('|                          |   |   |   |   |   |  |')
+        print('|                          +   +   +   +   +   +  |')
+        print('|                 X                               |')
+        print('|            X   0                                |')
+        print('|      X  XXX   000                           ++  |')
+        print('|    X X XXXXXXXX0       ++         ++        ++  |')
+        print('|    X XXXXXXXXXXX      +--+  ++   +--+    ++     |')
+        print('|   X  XXXXXXXXXXX       ++  +--+   ++    +--+    |')
+        print('|         XXXXXXX X           ++       ++  ++     |')
+        print('|            XX                        ++         |')
+        print('|                                                 |')
+        print('+-------------------------------------------------+')
         print('Choose your selection:')
         print('\t\t P. Explore the Pumpkin Patch')
         print('\t\t O. Explore the Orchard')
@@ -417,7 +566,7 @@ class fall():
                 else:
                     newGame.remove('a key')
                     newGame.getFromGround('key')
-                    print('key found')
+                    print('You\'ve found a key')
         elif choice != 'b':
             print('Invalid choice')
         self.Q4()
@@ -457,6 +606,7 @@ class fall():
         self.Q3()
 
     def next(self):
+        print('Congratulations! You have complete the Fall Room!')
         self.passed = True
 
 class game():
@@ -475,8 +625,8 @@ class game():
         print("Hello! You are stuck in the house of a Pinterest mom, where each room is seasonally themed.\n Unfortunately, some of her decorations might be too realistic. Your goal is to make it out of all four rooms alive.")
         print("You have 5 health points, 3 backpack slots, and 1 hand item.")
     def start(self):
-        #self.stage = spring()
-        #self.stage.start()
+        self.stage = spring()
+        self.stage.start()
         self.stage = summer()
         self.stage.start()
         #self.stage = fall()
