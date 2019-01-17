@@ -786,6 +786,24 @@ class winter():
     '''
     def cabin(self):
         if self.passed: return
+        print('+--=====------------------------------------------+')
+        print('|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXX+------+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXX+        +xXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXX++        ++XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXX+----------+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXX|    0     |XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXX|   000    |XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXX+----0-----+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
+        print('+-------------------------------------------------+')
         print('You are in the cabin. Choose your selection:') 
         print('\t\t C. Explore the cabin')
         if newGame.hand == 'lamp':
