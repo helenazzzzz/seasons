@@ -61,7 +61,7 @@ class spring():
         the river has a chance where the player could catch fish, determined by the random module
         '''
         if self.passed: return
-        print('\nYou are at the Riverbank')
+        print('\nYou are at the riverbank.')
         print('+--=====------------------------------------------+')
         print('|                                                 |')
         print('|                                        XX       |')
@@ -81,10 +81,10 @@ class spring():
         print('|                   XXXXXXXX                      |')
         print('+--=====----------XXXXXXXXXX----------------------+') 
         print('Choose your selection:')
-        print('\t\t F. Explore the Forest')
-        print('\t\t G. Explore the Garden')
+        print('\t\t F. Explore the forest')
+        print('\t\t G. Explore the garden')
         print('\t\t A. Attempt to fish')
-        print('\t\t B. Backpack / Check Stats\n')
+        print('\t\t B. Backpack / Check stats\n')
         selection = input()
         choice = newGame.parseText(selection)
         if choice == 'f':
@@ -98,7 +98,7 @@ class spring():
                 if newGame.foundItem():
                     newGame.getFromGround('fish')
             else:
-                print('You didn\'t manage to catch anything')
+                print('Unfortunately, you didn\'t manage to catch anything this time.')
         elif choice != 'b':
             print('Invalid choice')
         self.river()
@@ -109,7 +109,7 @@ class spring():
         the forest contains a secret action that could be revealed with an item
         '''
         if self.passed: return
-        print('\nYou are in the Forest')
+        print('\nYou are in the forest.')
         print('+--=====------------------------------------------+')
         print('|                                                 |')
         print('|                                        XX       |')
@@ -130,12 +130,12 @@ class spring():
         print('+--=====----------XXXXXXXXXX----------------------+') 
         digging = 0
         print('Choose your selection:')
-        print('\t\t R. Explore the River')
-        print('\t\t G. Explore the Garden')
-        print('\t\t W. Walk Around')
+        print('\t\t R. Explore the river')
+        print('\t\t G. Explore the garden')
+        print('\t\t W. Walk around')
         if newGame.hand == 'shovel':
             print('\t\t D. Dig')
-        print('\t\t B. Backpack / Check Stats\n')
+        print('\t\t B. Backpack / Check stats\n')
         selection = input()
         choice = newGame.parseText(selection)
         if newGame.hand == 'shovel' and choice == 'd':
@@ -143,9 +143,9 @@ class spring():
             if digging < 0.4:
                 if newGame.foundChest():
                     newGame.getFromGround('key')
-                    print('You\'ve found a key')
+                    print('You\'ve found a key!')
             else:
-                print('You didn\'t manage to dig up anything')
+                print('You didn\'t manage to dig up anything this time.')
         if choice == 'r':
             self.river()
         elif choice == 'g':
@@ -165,7 +165,7 @@ class spring():
         event = random.random()
         if event < 0.1:
             newGame.loseLife(1)
-            print("Oof, you got stung by a bee and lost one life. Current life: {}".format(newGame.lives))
+            print("Oof, you got stung by a bee and lost one life. Lives: {}".format(newGame.lives))
             e = 0
         event += e
         if event > 1 and not self.foundShed:
@@ -195,10 +195,10 @@ class spring():
         print('|                   XXXXXXXX                      |')
         print('+--=====----------XXXXXXXXXX----------------------+') 
         print('Choose your selection:')
-        print('\t\t R. Explore the River')
-        print('\t\t F. Explore the Forest')
-        print('\t\t W. Wander Around')
-        print('\t\t B. Backpack / Check Stats\n')
+        print('\t\t R. Explore the river')
+        print('\t\t F. Explore the forest')
+        print('\t\t W. Wander around')
+        print('\t\t B. Backpack / Check stats\n')
         selection = input()
         choice = newGame.parseText(selection)
         if choice == 'r':
@@ -349,7 +349,7 @@ class summer():
                 print('hand: ' + newGame.hand)
                 print('backpack: ' + str(newGame.backpack))
             elif digging > 0.5:
-                print("Ouch! You've been stung by a jellyfish and lost a life. Current life: {}".format(newGame.lives))
+                print("Ouch! You've been stung by a jellyfish and lost a life. Lives: {}".format(newGame.lives))
                 newGame.lives -= 1
             else:
                 print('Sorry, you didn\'t find anything. You might if you tried again, though...')
@@ -406,6 +406,9 @@ class summer():
             if detect < 0.7:
                 self.foundChest = True
                 print('The metal detector beeps when you hover over a raised mound of sand. You\'ve found a chest!')
+                if newGame.foundChest():
+                    print("You've found a net!")
+                    newGame.getFromGround('net')
         elif newGame.hand == 'metal detector' and choice == 'm' and (self.foundChest):
             print('The metal detector doesn\'t beep. There\'s nothing metal left on the beach.')
         elif choice == 'l':
@@ -986,7 +989,7 @@ class game():
         the constructor that prints the welcome message for the fall level
         '''
         print("Hello! You are stuck in the house of a Pinterest mom, where each room is seasonally themed.\n Unfortunately, some of her decorations might be too realistic. Your goal is to make it out of all four rooms alive.")
-        print("You have 5 health points, 3 backpack slots, and 1 hand item.")
+        print("You have 5 health points (the maximum), 3 backpack slots, and 1 hand item.")
     def start(self):
         self.stage = spring()
         self.stage.start()
@@ -996,7 +999,7 @@ class game():
         print ("You made it through summer, too! Now onto fall...")
         self.stage = fall()
         self.stage.start()
-        print ("You got through, fall, but winter is coming...")
+        print ("You got through fall, but winter is coming...")
         self.stage = winter()
         self.stage.start()
         print ("You've won the game!! Congratulations!")
