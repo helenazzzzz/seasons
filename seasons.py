@@ -650,7 +650,7 @@ class game():
             print('\t\t C. Cancel')
             selection = input()
             choice = self.parseText(selection)
-            if selection == 'r':
+            if choice == 'r':
                 print('backpack:' + str(self.backpack)[1:-1])
                 print('Select an item to remove')
                 selection = input()
