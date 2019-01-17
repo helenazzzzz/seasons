@@ -215,9 +215,6 @@ class summer():
         print('You find yourself on a beach, in front of a lemonade stand that appears to sell things besides lemonade.') 
     
     def start(self):
-        self.intro()
-        
-    def intro(self):
         if self.passed: return
         print('+--=====------------------------------------------+')
         print('|                                                 |')
@@ -252,7 +249,7 @@ class summer():
             self.sand()
         elif choice != 'b':
             print('Invalid choice')
-        self.intro()
+        self.start()
             
     def lemonadeStand(self):
         if self.passed: return
@@ -713,9 +710,6 @@ class winter():
         print("You have entered the winter room. You're in a cabin, which is dimly lit by the flickering fireplace. Outside it is pitch-black. You wouldn't be able to see anything without a lamp.") 
     
     def start(self):
-        self.intro()
-        
-    def intro(self):
         if self.passed: return
         print('+--=====------------------------------------------+')
         print('|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|')
@@ -747,7 +741,7 @@ class winter():
             self.wander()
         elif choice != 'b':
             print('Invalid choice')
-        self.intro()
+        self.start()
             
     def cabin(self):
         if self.passed: return
