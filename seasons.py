@@ -119,11 +119,9 @@ class spring():
         self.passed = True
 
 
-#####################################################################################################
 class summer():
     location = ''
     passed = ''
-    print('hi')
     def __init__(self):
         self.passed = False
         self.location = 0
@@ -154,7 +152,7 @@ class summer():
             
     def lemonadeStand(self):
         if self.passed: return
-        print('\nWelcome to the lemonade stand! Here, the currency consists of shells and pearls, which you can find in the ocean.') 
+        print('\nYou are at the lemonade stand! Here, the currency consists of shells and pearls, which you can find in the ocean.') 
         print('''Choose your selection:
               O. Explore the ocean
               S. Explore the sand
@@ -272,8 +270,6 @@ class summer():
 
     def next(self):
         self.passed = True
-##########################################################################################################
-
 
 class fall():
     passed = ''
@@ -459,9 +455,146 @@ class fall():
     def next(self):
         self.passed = True
 
+
+#####################################################################################################
+class winter():
+    def __init__(self):
+        self.passed = False
+        self.location = 0
+        self.foundLamp = False
+        print("You have entered the winter room. You're in a cabin, which is dimly lit by the flickering fireplace. Outside it is pitch-black. You wouldn't be able to see anything without a lamp.") 
+    
+    def start(self):
+        self.intro()
+        
+    def intro(self):
+        if self.passed: return
+        print('Choose your selection:')
+        print('\t\t C. Explore the cabin')
+        print('\t\t W. Wander around outside')
+        print('\t\t B. Backpack / Check stats\n')
+        selection = input()
+        choice = newGame.parseText(selection)
+        if choice == 'c':
+            self.cabin()
+        elif choice == 'w':
+            self.wander()
+        elif choice != 'b':
+            print('Invalid choice')
+        self.intro()
+            
+    def cabin(self):
+        if self.passed: return
+        print('You are in the cabin. Choose your selection:') 
+        print('\t\t C. Explore the cabin')
+        if newGame.hand == 'lamp':
+            print('\t\t M. Explore the mountain')
+            print('\t\t L. Explore the frozen lake')
+        print('\t\t B. Backpack / Check stats\n')
+        selection = input()
+        choice = newGame.parseText(selection)
+        if choice == 'c' and self.foundLamp == False:
+            print("You've found a lamp on the ground! It's already lit, and when you go near it, it warms your feet.")
+            if newGame.foundItem():
+                newGame.getFromGround('lamp')
+        elif choice == 'c' and self.foundLamp == True:
+            print("Hmm, looks like there's nothing new here.")
+        elif choice == 'm' and newGame.hand == 'lamp':
+            self.mountain()
+        elif choice == 'l' and newGame.hand == 'lamp':
+            self.lake()
+        elif choice != 'b':
+            print('Invalid choice')
+        self.cabin()
+
+    def wander(self):
+        if self.passed: return
+        newGame.lives -= 1
+        print("Without a source of heat, you feel your hands starting to go numb. That can't be good. You lose a life. Lives: " + str(newGame.lives))
+        print("Choose your selection:") 
+        print('\t\t C. Go back to the cabin')
+        print('\t\t W. Wander more')
+        print('\t\t B. Backpack / Check stats\n')
+        selection = input()
+        choice = newGame.parseText(selection)
+        if choice == 'c':
+            self.cabin()
+        elif choice != 'w' and choice != 'd':
+            print('Invalid choice')
+        self.wander()
+
+    def lake(self):
+        if self.passed: return
+        print('You are at the frozen lake. Choose your selection:') 
+        print('\t\t C. Explore the cabin')
+        print('\t\t M. Explore the mountain')
+        print('\t\t W. Walk on top of the lake')
+        print('\t\t B. Backpack / Check stats\n')
+        selection = input()
+        choice = newGame.parseText(selection)
+        if choice == 'c':
+            self.cabin()
+        elif choice == 'm':
+            self.mountain()
+        elif choice == 'w':
+            print("As you walk, you notice something glinting beneath your feet. You bend down and see that it's a key! Unfortunately, it's stuck under the surface of the ice.")
+            print("You realize if you want to get out, you need something to get through the ice. You try...")
+            print('M. Using your hands to melt the ice')
+            print('K. Kicking the ice')
+            print('L. Using the lamp')
+            for item in newGame.backpack:
+                print(item[0].upper() + '. Using the '+ item)
+            print('C. Cancel')
+            selection = input()
+            use = newGame.parseText(selection)
+            if use == 'l':
+                print("You set down the lamp, and you watch as the flame inside slowly melts the ice! You snatch the key quickly and put it in your backpack.")
+                newGame.getFromGround('key')
+            elif use == 'p' and 'pickax' in newGame.backpack:
+                newGame.loseLife(1)
+                print("You try to get the key with the pickax, but it's too far down to reach. Instead, you hurt your shoulder trying break the ice. Lose a life. Lives: " +newGame.lives)
+            elif use == 'k':
+                print("Ow. Did you really think that would work? You won't lose a life because the pain of stubbing your toe is already bad enough.")
+            elif use == 'm':
+                newGame.loseLife(1)
+                print("Some of the ice melts, but you realize it'll take forever and you'll get frostbite before it works. And what are the symptoms of hypothermia again? Lose a life. Lives: " +newGame.lives)
+            elif use != 'c':
+                print("This is a great item, but it doesn't help you melt the ice. Maybe try again.")
+        elif choice != 'b':
+            print('Invalid choice')
+        self.lake()
+
+    def mountain(self):
+        if self.passed: return
+        print('You are in the mountain. Choose your selection:') 
+        print('\t\t C. Explore the cabin')
+        print('\t\t L. Explore the frozen lake')
+        print('\t\t M. Climb the mountain')
+        print('\t\t B. Backpack / Check stats\n')
+        selection = input()
+        choice = newGame.parseText(selection)
+        if choice == 'c':
+            self.cabin()
+        elif choice == 'l':
+            self.lake()
+        elif choice == 'm':
+            findPickax = random.random()
+            if findPickax < 0.5:
+                print("You climb for a little bit and find nothing, but you might be able to find something if you keep going...")
+            else:
+                print("You found a pickax!")
+                if newGame.foundItem():
+                    newGame.getFromGround('pickax')
+        elif choice != 'w':
+            print('Invalid choice')
+        self.mountain()
+
+    def next(self):
+        self.passed = True
+
 class game():
     stage = ''
-    items = {'':1000,'rotten apple':0, 'apple':1, 'fish':2, 'cake':2, 'shovel': 10, 'fishing rod': 11, 'rake': 12, 'red leaf': 13, 'orange leaf': 14, 'yellow leaf':15, 'green leaf': 16, 'knife':17, 'shell':18, 'pearl':19, 'key':100, 'a key': 18}
+    items = {'':1000,'rotten apple':0, 'apple':1, 'fish':2, 'cake':2, 'shovel': 10, 'fishing rod': 11, 'rake': 12, 'red leaf': 13, 'orange leaf': 14, 'yellow leaf':15, 'green leaf': 16, 'knife':17, 'shell':18, 'pearl':19, 'pickax':20, 'key':100, 'a key': 18}
     backpack = []
     lives = 5
     hand = ''
@@ -477,10 +610,16 @@ class game():
     def start(self):
         #self.stage = spring()
         #self.stage.start()
-        self.stage = summer()
-        self.stage.start()
+        #print ("Congratulations, you got out of spring alive!! You use the key and enter the summer room...")
+        #self.stage = summer()
+        #self.stage.start()
+        #print ("You made it through summer, too! Now onto fall...")
         #self.stage = fall()
         #self.stage.start()
+        #print ("You got through, fall, but winter is coming...")
+        self.stage = winter()
+        self.stage.start()
+        print ("You've won the game!! Congratulations!")
     def getFromBackpack(self, item):
         if item in self.backpack:
             self.backpack.remove(item)
@@ -488,6 +627,11 @@ class game():
             self.hand = item
         else:
             print("Sorry, there is no such item in your backpack.")
+
+    def loseLife(self, lost):
+        self.lives -= lost
+        if self.lives < 0:
+            print('Sorry, you have no more lives left.')
     
     def getFromGround(self, item):
         if len(self.backpack) < 3:
