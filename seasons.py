@@ -97,6 +97,8 @@ class spring():
                 print("You've found a fish!!!!")
                 if newGame.foundItem():
                     newGame.getFromGround('fish')
+            else:
+                print('You didn\'t manage to catch anything')
         elif choice != 'b':
             print('Invalid choice')
         self.river()
@@ -138,10 +140,12 @@ class spring():
         choice = newGame.parseText(selection)
         if newGame.hand == 'shovel' and choice == 'd':
             digging += random.random()
-            if digging > 0.7:
+            if digging < 0.4:
                 if newGame.foundChest():
                     newGame.getFromGround('key')
                     print('You\'ve found a key')
+            else:
+                print('You didn\'t manage to dig up anything')
         if choice == 'r':
             self.river()
         elif choice == 'g':
@@ -160,7 +164,7 @@ class spring():
         print('You are in the garden')
         event = random.random()
         if event < 0.1:
-            newGame.lives -= 1
+            newGame.loseLife(1)
             print("Oof, you got stung by a bee and lost one life. Current life: {}".format(newGame.lives))
             e = 0
         event += e
@@ -370,11 +374,11 @@ class summer():
         print('+--=====-------------XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
         detect = 0
         print('\nItem directory')
-        print('''Choose your selection:
-              L. Explore the lemonade stand
-              O. Explore the ocean
-              B. Backpack / Check stats''')
-        if newGame.foundChest():
+        print('Choose your selection:')
+        print('\t\t L. Explore the lemonade stand')
+        print('\t\t O. Explore the ocean')
+        print('\t\t B. Backpack / Check stats')
+        if self.foundChest:
             print('\t\t C. Open Chest')
         if newGame.hand == 'metal detector':
             print('\t\t M. Use metal detector')
@@ -382,7 +386,7 @@ class summer():
         choice = newGame.parseText(selection)
         if newGame.hand == 'metal detector' and choice == 'm' and not(self.foundChest):
             detect += random.random()
-            if detect > 0.7:
+            if detect < 0.7:
                 self.foundChest = True
                 print('The metal detector beeps when you hover over a raised mound of sand. You\'ve found a chest!')
         elif newGame.hand == 'metal detector' and choice == 'm' and (self.foundChest):
@@ -425,9 +429,6 @@ class summer():
         elif choice != 'b':
             print('Invalid choice')
         self.directory()
-
-    def next(self):
-        self.passed = True
 
 class fall():
     passed = False     #instance variables that keep track of the player's state in the level
@@ -521,11 +522,11 @@ class fall():
             self.leaf()
         elif choice == 's':
             print('Oof, you dropped the pumpkin on your feet and man that hurts :\'(. Minus one life')
-            newGame.lives -= 1
+            newGame.loseLife(1)
         elif choice == 'c' and self.foundKnife:
             event = random.random()
             if event < 0.5:
-                print('key found')
+                print('You\'ve found a key')
                 if newGame.foundItem():
                     newGame.getFromGround('a key')
                     self.foundKey = True
@@ -909,16 +910,15 @@ class winter():
             print('Invalid choice')
         self.mountain()
 
-    def next(self):
-        self.passed = True
-
 class game():
     stage = ''                      #instance variables of the game
     items = {'':1000,               #the length of each item's key indicates the item's use
     'rotten apple':0,               #1: food, the number is the amount of lives the player receives, may be used in the backpack
     'apple':1,                      #2: an item that can be used in certain scenario, unusable in the backpack
     'fish':2,                       #3: an item that can be used in the backpack
-    'cake':2, 
+    'lemonade': 1,
+    'limeade': 1,
+    'orangeade': 1,
     'shovel': 10, 
     'fishing rod': 11, 
     'rake': 12, 
@@ -942,18 +942,19 @@ class game():
         print("Hello! You are stuck in the house of a Pinterest mom, where each room is seasonally themed.\n Unfortunately, some of her decorations might be too realistic. Your goal is to make it out of all four rooms alive.")
         print("You have 5 health points, 3 backpack slots, and 1 hand item.")
     def start(self):
-        #self.stage = spring()
-        #self.stage.start()
-        #print ("Congratulations, you got out of spring alive!! You use the key and enter the summer room...")
-        #self.stage = summer()
-        #self.stage.start()
-        #print ("You made it through summer, too! Now onto fall...")
-        #self.stage = fall()
-        #self.stage.start()
-        #print ("You got through, fall, but winter is coming...")
+        self.stage = spring()
+        self.stage.start()
+        print ("Congratulations, you got out of spring alive!! You use the key and enter the summer room...")
+        self.stage = summer()
+        self.stage.start()
+        print ("You made it through summer, too! Now onto fall...")
+        self.stage = fall()
+        self.stage.start()
+        print ("You got through, fall, but winter is coming...")
         self.stage = winter()
         self.stage.start()
         print ("You've won the game!! Congratulations!")
+        print('After some hard work, you have finally escaped the house of teh pinterest mom. What do you do after this?? Go on Pinterest of course. Maybe you can decorate your rooms like this too.')
     def getFromBackpack(self, item):
         '''
         exchanges an item in the backack with item in hand
