@@ -394,18 +394,18 @@ class summer():
         if ("shell" in newGame.backpack or newGame.hand == 'shell') and choice == 'm':
             newGame.getFromGround('metal detector')
             newGame.remove("shell")
-        if ("pearl" in newGame.backpack or newGame.hand == 'pearl') and choice == 'l':
+        elif ("pearl" in newGame.backpack or newGame.hand == 'pearl') and choice == 'l':
             newGame.getFromGround('lemonade')
             newGame.remove("pearl")
-        if ("pearl" in newGame.backpack or newGame.hand == 'pearl') and choice == 'o':
+        elif ("pearl" in newGame.backpack or newGame.hand == 'pearl') and choice == 'o':
             newGame.getFromGround('orangeade')
             newGame.remove("pearl")
-        if ("pearl" in newGame.backpack or newGame.hand == 'pearl') and choice == 'k':
+        elif ("pearl" in newGame.backpack or newGame.hand == 'pearl') and choice == 'k':
             newGame.getFromGround('limeade')
             print('The key limeade came with a key that you can use to move on to the next level!')
             newGame.getFromGround('key')
             newGame.remove("pearl")
-        if choice == 'c':
+        elif choice == 'c':
             self.lemonadeStand()
         elif choice != 'b':
             print('Invalid choice')
@@ -675,7 +675,24 @@ class fall():
 
 class game():
     stage = ''
-    items = {'':1000,'rotten apple':0, 'apple':1, 'fish':2, 'cake':2, 'shovel': 10, 'fishing rod': 11, 'rake': 12, 'red leaf': 13, 'orange leaf': 14, 'yellow leaf':15, 'green leaf': 16, 'knife':17, 'shell':18, 'pearl':19, 'key':100, 'a key': 18}
+    items = {'':1000,
+    'rotten apple':0, 
+    'apple':1, 
+    'fish':2, 
+    'cake':2, 
+    'shovel': 10, 
+    'fishing rod': 11, 
+    'rake': 12, 
+    'red leaf': 13, 
+    'orange leaf': 14, 
+    'yellow leaf':15, 
+    'green leaf': 16, 
+    'knife':17, 
+    'shell':18, 
+    'pearl':19, 
+    'key':100, 
+    'a key': 20,
+    'metal detector': 21}
     backpack = []
     lives = 5
     hand = ''
@@ -689,8 +706,8 @@ class game():
         print("Hello! You are stuck in the house of a Pinterest mom, where each room is seasonally themed.\n Unfortunately, some of her decorations might be too realistic. Your goal is to make it out of all four rooms alive.")
         print("You have 5 health points, 3 backpack slots, and 1 hand item.")
     def start(self):
-        self.stage = spring()
-        self.stage.start()
+        #self.stage = spring()
+        #self.stage.start()
         self.stage = summer()
         self.stage.start()
         #self.stage = fall()
