@@ -208,12 +208,20 @@ class spring():
 
 
 class summer():
-    passed = ''
+
+    '''
+    constructor that initializes passed and foundChest
+    prints the welcome message the the summer level
+    '''
     def __init__(self):
         self.passed = False
         self.foundChest = False
         print('You find yourself on a beach, in front of a lemonade stand that appears to sell things besides lemonade.') 
     
+    '''
+    prints the ASCII map and the first question of the level
+    processes the text and performs the desired action
+    '''
     def start(self):
         if self.passed: return
         print('+--=====------------------------------------------+')
@@ -251,6 +259,10 @@ class summer():
             print('Invalid choice')
         self.start()
             
+    '''
+    prints the ASCII map and the question for when the player is at the lemonade stand
+    processes the input and performs the desired action
+    '''
     def lemonadeStand(self):
         if self.passed: return
         print('\nYou are at the lemonade stand! Here, the currency consists of shells and pearls, which you can find in the ocean.') 
@@ -290,6 +302,10 @@ class summer():
             print('Invalid choice')
         self.lemonadeStand()
 
+    '''
+    prints the ASCII map and the question(s) for when the player is at the ocean
+    processes the input and performs the desired action
+    '''
     def ocean(self):
         if self.passed: return
         print('+--=====------------------------------------------+')
@@ -345,6 +361,10 @@ class summer():
             print('Invalid choice')
         self.ocean()
 
+    '''
+    prints the ASCII map and the question for when the player is on the sand
+    processes the input and performs the desired action
+    '''
     def sand(self):
         if self.passed: return
         print('+--=====------------------------------------------+')
@@ -392,6 +412,10 @@ class summer():
             print('Invalid choice')
         self.sand()
 
+    '''
+    prints the ASCII map and the item directory
+    processes the input and buys the desired item
+    '''
     def directory(self):
         if self.passed: return
         print('\nItem directory')
@@ -423,6 +447,9 @@ class summer():
             print('Invalid choice')
         self.directory()
 
+    '''
+    allows player to move on to the next level
+    '''
     def next(self):
         self.passed = True
 
@@ -704,11 +731,20 @@ class fall():
 
 
 class winter():
+    '''
+    constructor that initializes the variables passed and foundLamp
+    prints the introduction to the winter room
+    '''
     def __init__(self):
         self.passed = False
         self.foundLamp = False
         print("You have entered the winter room. You're in a cabin, which is dimly lit by the flickering fireplace. Outside it is pitch-black. You wouldn't be able to see anything without a lamp.") 
     
+    
+    '''
+    prints the ASCII map (dark) and the first question of the level
+    processes the text and performs the desired action
+    '''
     def start(self):
         if self.passed: return
         print('+--=====------------------------------------------+')
@@ -743,6 +779,10 @@ class winter():
             print('Invalid choice')
         self.start()
             
+    '''
+    prints the ASCII map and the question for when the player is in the cabin
+    processes the input and performs the desired action
+    '''
     def cabin(self):
         if self.passed: return
         print('You are in the cabin. Choose your selection:') 
@@ -767,6 +807,11 @@ class winter():
             print('Invalid choice')
         self.cabin()
 
+    '''
+    prints the ASCII map (dark) and the question for when the player is wandering
+    deducts a life for being out in the cold without a source of heat or light
+    processes the input and performs the desired action
+    '''
     def wander(self):
         if self.passed: return
         print('+--=====------------------------------------------+')
@@ -801,6 +846,10 @@ class winter():
             print('Invalid choice')
         self.wander()
 
+    '''
+    prints the ASCII map and the question for when the player is at the lake
+    processes the input and performs the desired action
+    '''
     def lake(self):
         if self.passed: return
         print('+--=====------------------------------------------+')
@@ -860,6 +909,10 @@ class winter():
             print('Invalid choice')
         self.lake()
 
+    '''
+    prints the ASCII map and the question for when the player is on the mountain
+    processes the input and performs the desired action
+    '''
     def mountain(self):
         if self.passed: return
         print('+--=====------------------------------------------+')
@@ -903,6 +956,9 @@ class winter():
             print('Invalid choice')
         self.mountain()
 
+    '''
+    allows player to move on to the next level
+    '''
     def next(self):
         self.passed = True
 
@@ -925,7 +981,9 @@ class game():
     'pearl':19, 
     'key':100, 
     'a key': 20,
-    'metal detector': 21}
+    'metal detector': 21,
+    'pickax': 22,
+    'lamp': 23}
     backpack = []
     lives = 5
     hand = ''
