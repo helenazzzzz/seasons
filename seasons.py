@@ -1,20 +1,25 @@
 import random
 
 class spring():
-    foundShed = False
-    location = ''
-    passed = ''
+    '''
+    the spring level
+    '''
+
+    foundShed = False       #instance variables that keep track of the player's state in the level
+    passed = False
+
     def __init__(self):
-        self.passed = False
-        self.location = 0
+        '''
+        the constructor that prints the welcome message for the spring level
+        '''
         print('The first door leads you into the Spring Room. You are scared and lost, but at least the weather is nice and the birds are chirping.') 
-    
-    def start(self):
-        self.Q1()
         
-    def Q1(self):
+    def start(self):
+        '''
+        provides a set of choices for the player to choose from and executes the player's desired actions
+        '''
         if self.passed: return
-        print('+-------------------------------------------------+')
+        print('+--=====------------------------------------------+')
         print('|                                                 |')
         print('|         0                              XX       |')
         print('|        000             XXXXXX XXXXX   XXXXX     |')
@@ -31,7 +36,7 @@ class spring():
         print('|        ++ ++ ++        XXXXXXXXX                |')
         print('|                      XXXXXX                     |')
         print('|                   XXXXXXXX                      |')
-        print('+-----------------XXXXXXXXXX----------------------+')        
+        print('+--=====----------XXXXXXXXXX----------------------+')        
         print('Choose your selection:')
         print('\t\t R. Explore the River')
         print('\t\t F. Explore the Forest')
@@ -40,19 +45,23 @@ class spring():
         selection = input()
         choice = newGame.parseText(selection)
         if choice == 'r':
-            self.Q2()
+            self.river()
         elif choice == 'f':
-            self.Q3()
+            self.forest()
         elif choice == 'g':
-            self.Q4(0)
+            self.garden(0)
         elif choice != 'b':
             print('Invalid choice')
-        self.Q1()
+        self.start()
             
-    def Q2(self):
+    def river(self):
+        '''
+        provides a set of choices for the player to choose from and executes the player's desired actions
+        the river has a chance where the player could catch fish, determined by the random module
+        '''
         if self.passed: return
         print('\nYou are at the Riverbank')
-        print('+-------------------------------------------------+')
+        print('+--=====------------------------------------------+')
         print('|                                                 |')
         print('|                                        XX       |')
         print('|                        XXXXXX XXXXX   XXXXX     |')
@@ -69,7 +78,7 @@ class spring():
         print('|        ++ ++ ++        XXXXXXXXX                |')
         print('|                      XXXXXX                     |')
         print('|                   XXXXXXXX                      |')
-        print('+-----------------XXXXXXXXXX----------------------+') 
+        print('+--=====----------XXXXXXXXXX----------------------+') 
         print('Choose your selection:')
         print('\t\t F. Explore the Forest')
         print('\t\t G. Explore the Garden')
@@ -78,9 +87,9 @@ class spring():
         selection = input()
         choice = newGame.parseText(selection)
         if choice == 'f':
-            self.Q3()
+            self.forest()
         elif choice == 'g':
-            self.Q4(0)
+            self.garden(0)
         elif choice == 'a':
             event = random.random()
             if (newGame.hand == 'fishing rod' and event < 0.5) or event < 0.2:
@@ -89,12 +98,16 @@ class spring():
                     newGame.getFromGround('fish')
         elif choice != 'b':
             print('Invalid choice')
-        self.Q2()
+        self.river()
         
-    def Q3(self):
+    def forest(self):
+        '''
+        provides a set of choices for the player to choose from and executes the player's desired actions
+        the forest contains a secret action that could be revealed with an item
+        '''
         if self.passed: return
         print('\nYou are in the Forest')
-        print('+-------------------------------------------------+')
+        print('+--=====------------------------------------------+')
         print('|                                                 |')
         print('|                                        XX       |')
         print('|                        XXXXXX XXXXX   XXXXX     |')
@@ -111,7 +124,7 @@ class spring():
         print('|        ++ ++ ++        XXXXXXXXX                |')
         print('|                      XXXXXX                     |')
         print('|                   XXXXXXXX                      |')
-        print('+-----------------XXXXXXXXXX----------------------+') 
+        print('+--=====----------XXXXXXXXXX----------------------+') 
         digging = 0
         print('Choose your selection:')
         print('\t\t R. Explore the River')
@@ -129,14 +142,19 @@ class spring():
                     newGame.getFromGround('key')
                     print('You\'ve found a key')
         if choice == 'r':
-            self.Q2()
+            self.river()
         elif choice == 'g':
-            self.Q4(0)
+            self.garden(0)
         elif choice != 'b' and choice != 'w' and choice != 'd':
             print('Invalid choice')
-        self.Q3()
+        self.forest()
         
-    def Q4(self,e):
+    def garden(self,e):
+        '''
+        provides a set of choices for the player to choose from and executes the player's desired actions
+        the garden contains bees that can sting the player
+        the player has a chance of encountering a shed, which is determined through the random module and the chance increases as garden() is repeatedly called
+        '''
         if self.passed: return
         print('You are in the garden')
         event = random.random()
@@ -153,7 +171,7 @@ class spring():
                 newGame.getFromGround('fishing rod')
                 self.foundShed = True
             event = 0
-        print('+-------------------------------------------------+')
+        print('+--=====------------------------------------------+')
         print('|                                                 |')
         print('|                                        XX       |')
         print('|                        XXXXXX XXXXX   XXXXX     |')
@@ -170,7 +188,7 @@ class spring():
         print('|        ++ ++ ++        XXXXXXXXX                |')
         print('|                      XXXXXX                     |')
         print('|                   XXXXXXXX                      |')
-        print('+-----------------XXXXXXXXXX----------------------+') 
+        print('+--=====----------XXXXXXXXXX----------------------+') 
         print('Choose your selection:')
         print('\t\t R. Explore the River')
         print('\t\t F. Explore the Forest')
@@ -179,12 +197,12 @@ class spring():
         selection = input()
         choice = newGame.parseText(selection)
         if choice == 'r':
-            self.Q2()
+            self.river()
         elif choice == 'f':
-            self.Q3()
+            self.forest()
         elif choice != 'b' and choice != 'w':
             print('Invalid choice')
-        self.Q4(event)
+        self.garden(event)
 
 
 
@@ -204,7 +222,7 @@ class summer():
         
     def intro(self):
         if self.passed: return
-        print('+-------------------------------------------------+')
+        print('+--=====------------------------------------------+')
         print('|                                                 |')
         print('|                                  XXX            |')
         print('|          0                     XX   XX          |')
@@ -221,7 +239,7 @@ class summer():
         print('|        ++           ++           XXXXXXXXXXXXXXXX')
         print('|            ++            XXXXXXXXXXXXXXXXXXXXXXXX')
         print('|                      XXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-        print('+--------------------XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+        print('+--=====-------------XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
         print('Choose your selection:')
         print('\t\t L. Explore the lemonade stand')
         print('\t\t O. Explore the ocean')
@@ -242,7 +260,7 @@ class summer():
     def lemonadeStand(self):
         if self.passed: return
         print('\nWelcome to the lemonade stand! Here, the currency consists of shells and pearls, which you can find in the ocean.') 
-        print('+-------------------------------------------------+')
+        print('+--=====------------------------------------------+')
         print('|                                                 |')
         print('|                                  XXX            |')
         print('|                                XX   XX          |')
@@ -259,7 +277,7 @@ class summer():
         print('|        ++           ++           XXXXXXXXXXXXXXXX')
         print('|            ++            XXXXXXXXXXXXXXXXXXXXXXXX')
         print('|                      XXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-        print('+--------------------XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+        print('+--=====-------------XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
         print('''Choose your selection:
               O. Explore the ocean
               S. Explore the sand
@@ -280,7 +298,7 @@ class summer():
 
     def ocean(self):
         if self.passed: return
-        print('+-------------------------------------------------+')
+        print('+--=====------------------------------------------+')
         print('|                                                 |')
         print('|                                  XXX            |')
         print('|                                XX   XX          |')
@@ -297,7 +315,7 @@ class summer():
         print('|        ++           ++           XXX0XXXXXXXXXXXX')
         print('|            ++            XXXXXXXXXXXXXXXXXXXXXXXX')
         print('|                      XXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-        print('+--------------------XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+        print('+--=====-------------XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
         print('''Choose your selection:
               L. Explore the lemonade stand
               S. Explore the sand
@@ -335,7 +353,7 @@ class summer():
 
     def sand(self):
         if self.passed: return
-        print('+-------------------------------------------------+')
+        print('+--=====------------------------------------------+')
         print('|                                                 |')
         print('|                                  XXX            |')
         print('|                                XX   XX          |')
@@ -352,7 +370,7 @@ class summer():
         print('|        ++           ++           XXXXXXXXXXXXXXXX')
         print('|            ++            XXXXXXXXXXXXXXXXXXXXXXXX')
         print('|                      XXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-        print('+--------------------XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+        print('+--=====-------------XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
         detect = 0
         print('\nItem directory')
         print('''Choose your selection:
@@ -417,21 +435,23 @@ class summer():
 
 
 class fall():
-    passed = ''
+    passed = False     #instance variables that keep track of the player's state in the level
     foundRake = False
     foundKey = False
     foundKnife = False
     foundChest = False
     def __init__(self):
-        self.passed = False
-    
-    def start(self):
+        '''
+        the constructor that prints the welcome message for the fall level
+        '''
         print('Welcome to the fall room. The weather is getting a little chilly and the air is filled with the rich scents of pumpkin spice latte and apple pie.')
-        self.Q1()
 
-    def Q1(self):
+    def start(self):
+        '''
+        provides a set of choices for the player to choose from and executes the player's desired actions
+        '''
         if self.passed: return
-        print('+-------------------------------------------------+')
+        print('+--=====------------------------------------------+')
         print('|                                                 |')
         print('|        0                                        |')
         print('|       000              +-+ +-+ +-+ +-+ +-+ +-+ |')
@@ -448,7 +468,7 @@ class fall():
         print('|         XXXXXXX X           ++       ++  ++     |')
         print('|            XX                        ++         |')
         print('|                                                 |')
-        print('+-------------------------------------------------+')
+        print('+--=====------------------------------------------+')
         print('Choose your selection:')
         print('\t\t P. Explore the Pumpkin Patch')
         print('\t\t O. Explore the Orchard')
@@ -457,19 +477,23 @@ class fall():
         selection = input()
         choice = newGame.parseText(selection)
         if choice == 'p':
-            self.Q2()
+            self.pumpkin()
         elif choice == 'o':
-            self.Q3()
+            self.orchard()
         elif choice == 'l':
-            self.Q4()
+            self.leaf()
         elif choice != 'b':
             print('Invalid choice')
-        self.Q1()
+        self.start()
 
-    def Q2(self):
+    def pumpkin(self):
+        '''
+        provides a set of choices for the player to choose from and executes the player's desired actions
+        players may also perform actions with the pumpkins
+        '''
         if self.passed: return
         print('You are at the pumpkin patch.')
-        print('+-------------------------------------------------+')
+        print('+--=====------------------------------------------+')
         print('|                                                 |')
         print('|                                                 |')
         print('|                         +-+ +-+ +-+ +-+ +-+ +-+ |')
@@ -486,7 +510,7 @@ class fall():
         print('|         XXXXXXX X           ++       ++  ++     |')
         print('|            XX                        ++         |')
         print('|                                                 |')
-        print('+-------------------------------------------------+')
+        print('+--=====------------------------------------------+')
         print('Choose your selection:')
         print('\t\t O. Explore the Orchard')
         print('\t\t L. Explore the Leaf Pile')
@@ -497,9 +521,9 @@ class fall():
         selection = input()
         choice = newGame.parseText(selection)
         if choice == 'o':
-            self.Q3()
+            self.orchard()
         elif choice == 'l':
-            self.Q4()
+            self.leaf()
         elif choice == 's':
             print('Oof, you dropped the pumpkin on your feet and man that hurts :\'(. Minus one life')
             newGame.lives -= 1
@@ -512,12 +536,17 @@ class fall():
                     self.foundKey = True
         elif choice != 'b':
             print('Invalid choice')
-        self.Q2()
+        self.pumpkin()
         
-    def Q3(self):
+    def orchard(self):
+        '''
+        provides a set of choices for the player to choose from and executes the player's desired actions
+        the orchard contains items which the player can find, determined by the random module
+        the player may trade at the store
+        '''
         if self.passed: return
         print('You are at the orchard.')
-        print('+-------------------------------------------------+')
+        print('+--=====------------------------------------------+')
         print('|                                                 |')
         print('|                                                 |')
         print('|                         +-+ +-+ +-+ +-+ +-+ +-+ |')
@@ -534,7 +563,7 @@ class fall():
         print('|         XXXXXXX X           ++       ++  ++     |')
         print('|            XX                        ++         |')
         print('|                                                 |')
-        print('+-------------------------------------------------+')
+        print('+--=====------------------------------------------+')
         print('Choose your selection:')
         print('\t\t P. Explore the Pumpkin Patch')
         print('\t\t L. Explore the Leaf Pile')
@@ -544,11 +573,11 @@ class fall():
         selection = input()
         choice = newGame.parseText(selection)
         if choice == 'p':
-            self.Q2()
+            self.pumpkin()
         elif choice == 'l':
-            self.Q4()
+            self.leaf()
         elif choice == 't':
-            self.Q5()
+            self.store()
         elif choice == 'w':
             event = random.random()
             if event < 0.2:
@@ -566,12 +595,16 @@ class fall():
                     self.foundKnife = True
         elif choice != 'b':
             print('Invalid choice')
-        self.Q3()
+        self.orchard()
     
-    def Q4(self):
+    def leaf(self):
+        '''
+        provides a set of choices for the player to choose from and executes the player's desired actions
+        the player may collect leaves or perform other actions
+        '''
         if self.passed: return
         print('You are at the leaf pile.')
-        print('+-------------------------------------------------+')
+        print('+--=====------------------------------------------+')
         print('|                                                 |')
         print('|                                                 |')
         print('|                         +-+ +-+ +-+ +-+ +-+ +-+ |')
@@ -588,7 +621,7 @@ class fall():
         print('|         XXXXXXX X           ++       ++  ++     |')
         print('|            XX                        ++         |')
         print('|                                                 |')
-        print('+-------------------------------------------------+')
+        print('+--=====------------------------------------------+')
         print('Choose your selection:')
         print('\t\t P. Explore the Pumpkin Patch')
         print('\t\t O. Explore the Orchard')
@@ -601,9 +634,9 @@ class fall():
         selection = input()
         choice = newGame.parseText(selection)
         if choice == 'p':
-            self.Q2()
+            self.pumpkin()
         elif choice == 'o':
-            self.Q3()
+            self.orchard()
         elif choice == 'l':
             event = random.random()
             if event < 0.25:
@@ -637,10 +670,14 @@ class fall():
                     print('You\'ve found a key')
         elif choice != 'b':
             print('Invalid choice')
-        self.Q4()
+        self.leaf()
             
 
-    def Q5(self):
+    def store(self):
+        '''
+        provides a set of choices for the player to choose from and executes the player's desired actions
+        the player can interact and trade with the merchant, the method checks whether the player has the right items to trade
+        '''
         print('Hello! What can I do for you today?')
         print('\t\t D. Discuss Deal')
         print('\t\t L. Leave Store')
@@ -671,14 +708,14 @@ class fall():
         elif choice != 'l':
             print('Invalid choice')
         print('Thank you for visiting, have a great day!')
-        self.Q3()
+        self.orchard()
 
 class game():
-    stage = ''
-    items = {'':1000,
-    'rotten apple':0, 
-    'apple':1, 
-    'fish':2, 
+    stage = ''                      #instance variables of the game
+    items = {'':1000,               #the length of each item's key indicates the item's use
+    'rotten apple':0,               #1: food, the number is the amount of lives the player receives, may be used in the backpack
+    'apple':1,                      #2: an item that can be used in certain scenario, unusable in the backpack
+    'fish':2,                       #3: an item that can be used in the backpack
     'cake':2, 
     'shovel': 10, 
     'fishing rod': 11, 
@@ -696,13 +733,10 @@ class game():
     backpack = []
     lives = 5
     hand = ''
-    level = 0
-    places = [{'r':1, 'f':2, 'g':3},
-              {'l':1, 'o':2, 's':3},
-              {'p':1, 'l':2, 'x':3},
-              {'m':1, 'i':2, 'c':3}]
-    location = ''
     def __init__(self):
+        '''
+        the constructor that prints the welcome message for the fall level
+        '''
         print("Hello! You are stuck in the house of a Pinterest mom, where each room is seasonally themed.\n Unfortunately, some of her decorations might be too realistic. Your goal is to make it out of all four rooms alive.")
         print("You have 5 health points, 3 backpack slots, and 1 hand item.")
     def start(self):
