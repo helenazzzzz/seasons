@@ -187,10 +187,6 @@ class spring():
         self.Q4(event)
 
 
-    def next(self):
-        print('Congratulations! You have complete the Spring Room!')
-        self.passed = True
-
 
 #####################################################################################################
 class summer():
@@ -208,6 +204,24 @@ class summer():
         
     def intro(self):
         if self.passed: return
+        print('+-------------------------------------------------+')
+        print('|                                                 |')
+        print('|                                  XXX            |')
+        print('|          0                     XX   XX          |')
+        print('|         000                  XX       XX        |')
+        print('|          0                   +---------+        |')
+        print('|                              |         |        |')
+        print('|                              |  +---+  |        |')
+        print('|                              +---------+        |')
+        print('|                                                 X')
+        print('|             ++                                XXX')
+        print('|      ++                                    XXXXXX')
+        print('|          ++       ++                  XXXXXXXXXXX')
+        print('|   ++          ++                   XXXXXXXXXXXXXX')
+        print('|        ++           ++           XXXXXXXXXXXXXXXX')
+        print('|            ++            XXXXXXXXXXXXXXXXXXXXXXXX')
+        print('|                      XXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+        print('+--------------------XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
         print('Choose your selection:')
         print('\t\t L. Explore the lemonade stand')
         print('\t\t O. Explore the ocean')
@@ -228,6 +242,24 @@ class summer():
     def lemonadeStand(self):
         if self.passed: return
         print('\nWelcome to the lemonade stand! Here, the currency consists of shells and pearls, which you can find in the ocean.') 
+        print('+-------------------------------------------------+')
+        print('|                                                 |')
+        print('|                                  XXX            |')
+        print('|                                XX   XX          |')
+        print('|                              XX       XX        |')
+        print('|                              +---------+        |')
+        print('|                              |         |        |')
+        print('|                              |  +---+  |        |')
+        print('|                              +----0----+        |')
+        print('|                                  000            X')
+        print('|             ++                    0           XXX')
+        print('|      ++                                    XXXXXX')
+        print('|          ++       ++                  XXXXXXXXXXX')
+        print('|   ++          ++                   XXXXXXXXXXXXXX')
+        print('|        ++           ++           XXXXXXXXXXXXXXXX')
+        print('|            ++            XXXXXXXXXXXXXXXXXXXXXXXX')
+        print('|                      XXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+        print('+--------------------XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
         print('''Choose your selection:
               O. Explore the ocean
               S. Explore the sand
@@ -248,6 +280,24 @@ class summer():
 
     def ocean(self):
         if self.passed: return
+        print('+-------------------------------------------------+')
+        print('|                                                 |')
+        print('|                                  XXX            |')
+        print('|                                XX   XX          |')
+        print('|                              XX       XX        |')
+        print('|                              +---------+        |')
+        print('|                              |         |        |')
+        print('|                              |  +---+  |        |')
+        print('|                              +---------+        |')
+        print('|                                                 X')
+        print('|             ++                                XXX')
+        print('|      ++                                    XXXXXX')
+        print('|          ++       ++                0 XXXXXXXXXXX')
+        print('|   ++          ++                   000XXXXXXXXXXX')
+        print('|        ++           ++           XXX0XXXXXXXXXXXX')
+        print('|            ++            XXXXXXXXXXXXXXXXXXXXXXXX')
+        print('|                      XXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+        print('+--------------------XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
         print('''Choose your selection:
               L. Explore the lemonade stand
               S. Explore the sand
@@ -285,6 +335,24 @@ class summer():
 
     def sand(self):
         if self.passed: return
+        print('+-------------------------------------------------+')
+        print('|                                                 |')
+        print('|                                  XXX            |')
+        print('|                                XX   XX          |')
+        print('|                              XX       XX        |')
+        print('|                              +---------+        |')
+        print('|                              |         |        |')
+        print('|                              |  +---+  |        |')
+        print('|                              +---------+        |')
+        print('|                                                 X')
+        print('|             ++0                               XXX')
+        print('|      ++      000                           XXXXXX')
+        print('|          ++   0   ++                  XXXXXXXXXXX')
+        print('|   ++          ++                   XXXXXXXXXXXXXX')
+        print('|        ++           ++           XXXXXXXXXXXXXXXX')
+        print('|            ++            XXXXXXXXXXXXXXXXXXXXXXXX')
+        print('|                      XXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+        print('+--------------------XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
         detect = 0
         print('\nItem directory')
         print('''Choose your selection:
@@ -604,10 +672,6 @@ class fall():
             print('Invalid choice')
         print('Thank you for visiting, have a great day!')
         self.Q3()
-
-    def next(self):
-        print('Congratulations! You have complete the Fall Room!')
-        self.passed = True
 
 class game():
     stage = ''
