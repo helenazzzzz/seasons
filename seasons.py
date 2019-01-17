@@ -165,8 +165,8 @@ class spring():
             e = 0
         event += e
         if event > 1 and not self.foundShed:
-            print("You have found the shed, there is a shovel and a fishing rod inside, they might be useful.")
-            print('You may use the item that is currently in your hand, ucheck your stats to change the item')
+            print("You have found the shed with a shovel and a fishing rod inside. They might be useful.")
+            print('You may use the item that is currently in your hand. Check your backpack to change the item.')
             if newGame.foundItem():
                 newGame.getFromGround('shovel')
                 newGame.getFromGround('fishing rod')
@@ -208,11 +208,9 @@ class spring():
 
 
 class summer():
-    location = ''
     passed = ''
     def __init__(self):
         self.passed = False
-        self.location = 0
         self.foundChest = False
         print('You find yourself on a beach, in front of a lemonade stand that appears to sell things besides lemonade.') 
     
@@ -708,11 +706,9 @@ class fall():
         self.orchard()
 
 
-#####################################################################################################
 class winter():
     def __init__(self):
         self.passed = False
-        self.location = 0
         self.foundLamp = False
         print("You have entered the winter room. You're in a cabin, which is dimly lit by the flickering fireplace. Outside it is pitch-black. You wouldn't be able to see anything without a lamp.") 
     
